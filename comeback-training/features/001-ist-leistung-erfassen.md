@@ -28,6 +28,7 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 - Speichern der Einheit als Trainingsprotokoll mit Datum
 - Anzeige „Letztes Mal“ pro Übung
 - Liste vergangener Einheiten (Datum, Dauer, erledigte Sätze)
+- Export und Import aller persönlichen Daten als Datei („Daten sichern“, „Daten laden“)
 
 **Nicht drin:**
 - Freitext-Notizen. Bewusst weggelassen, kann später nachgerüstet werden.
@@ -49,7 +50,7 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
    - Ein Satz einer einseitigen Übung gilt erst als erledigt, wenn beide Seiten erfasst sind.
 3. **Anstrengung:** Direkt nach dem Abhaken eines Satzes, bei einseitigen Übungen einer Seite, erscheint daneben die Auswahl „leicht“, „passend“, „am Limit“.
    - Tippt Fabian eine Stufe, wird sie gespeichert. Danach startet die Pause, bei der ersten Seite einer einseitigen Übung geht es direkt zur zweiten Seite.
-   - Tippt er keine Stufe, gilt der Satz nach kurzer Zeit als „passend“, und es geht genauso weiter. Siehe offene Frage 2.
+   - Tippt er keine Stufe, gilt der Satz nach **5 Sekunden** als „passend“, und es geht genauso weiter. Die verbleibende Wartezeit ist an der Auswahl sichtbar.
    - Die Anstrengung lässt sich nachträglich ändern, solange die Einheit nicht abgeschlossen ist.
 4. **Gewicht:** Hantelübungen (Goblet Squat, Rudern, Schulterdrücken) haben ein Gewichtsfeld in kg, in 0,5-kg-Schritten. Das Gewicht gilt für alle Sätze und beide Seiten der Übung, solange es nicht geändert wird.
 5. **Vorbelegung:** Das Ist-Wert-Feld ist vorbelegt:
@@ -62,6 +63,13 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 10. **Letztes Mal:** Jede Übungskarte zeigt eine Zeile wie „Letztes Mal: 12 · 12 · 11 Wdh. mit 10 kg“, sobald ein Protokoll existiert. Bei einseitigen Übungen getrennt, z. B. „L 10 · 10 · 9 / R 10 · 9 · 9 mit 8 kg“.
 11. **Bezug zu 002 (Zeiten):** Bei einseitigen Übungen beginnt die Pausenzeit mit dem Abhaken der zweiten Seite. Die Zeit zwischen den Seiten zählt zur Übungszeit, nicht zur Pause.
 12. **Datenhaltung:** Siehe Abschnitt „Rahmenbedingungen“ im Fachkonzept. Alles bleibt lokal im Browser.
+13. **Daten sichern (Export):** Ein Knopf „Daten sichern“ lädt eine Datei mit allen persönlichen Daten herunter: alle Trainingsprotokolle, die laufende Einheit und Einstellungen. Der Dateiname enthält das Datum, z. B. `comeback-training-2026-10-12.json`. Das Format ist geräteunabhängig und funktioniert auf Handy und Laptop.
+14. **Daten laden (Import):** Ein Knopf „Daten laden“ liest eine solche Datei wieder ein.
+    - Vor dem Übernehmen zeigt die App, was in der Datei steckt, z. B. „8 Einheiten vom 11.10. bis 02.11.“, und fragt nach Bestätigung.
+    - Ist die Datei keine gültige Sicherung, meldet die App das verständlich und ändert nichts.
+    - Ob die geladenen Daten die vorhandenen ersetzen oder mit ihnen zusammengeführt werden: siehe offene Frage 1.
+15. **Ort der Knöpfe:** „Daten sichern“ und „Daten laden“ stehen bei der Verlaufsliste, nicht im Trainingsablauf.
+16. **Hinweis Auslieferung:** Export funktioniert in der über GitHub Pages ausgelieferten App. Im Claude-Artefakt sind Downloads technisch gesperrt, dort ist nur der Import nutzbar.
 
 ## Akzeptanzkriterien
 
@@ -74,11 +82,17 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 - [ ] Beim nächsten Öffnen zeigt jede Zirkel-Übung „Letztes Mal“ mit den Werten aller 3 Sätze, bei einseitigen Übungen pro Seite, und dem Gewicht.
 - [ ] Die Felder sind beim nächsten Training mit den Werten der letzten Einheit vorbelegt.
 - [ ] Nach Neuladen der Seite mitten im Training sind die bereits erfassten Werte und Anstrengungen noch da.
+- [ ] Ohne Tap auf eine Anstrengung startet die Pause nach 5 Sekunden.
+- [ ] „Daten sichern“ lädt auf Handy und Laptop eine Datei mit Datum im Namen herunter.
+- [ ] Nach Leeren der Browserdaten stellt „Daten laden“ mit dieser Datei Verlauf und „Letztes Mal“ vollständig wieder her.
+- [ ] Eine beliebige andere Datei wird mit verständlicher Meldung abgelehnt, die vorhandenen Daten bleiben unverändert.
 
 ## Offene Fragen
 
-1. **Sicherung:** Daten im Browser können beim Leeren des Browsers verloren gehen. Soll es einen Export als Datei geben, um das abzusichern?
-2. **Wartezeit bis „passend“:** Wie lange wartet die App auf die Anstrengung, bevor sie „passend“ annimmt? Vorschlag: 5 Sek.
+1. **Ersetzen oder zusammenführen beim Laden?**
+   - **Ersetzen:** Die Datei ersetzt alle lokalen Daten. Einfach und eindeutig, aber Einheiten, die nur auf dem Gerät liegen, gehen verloren.
+   - **Zusammenführen:** Einheiten aus der Datei kommen dazu, doppelte werden erkannt und nur einmal behalten. Sicherer, wenn man zwischen Handy und Laptop wechselt.
+   - Vorschlag: zusammenführen.
 
 ## Entscheidungen
 
@@ -89,3 +103,5 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 | 2026-10-12 | Vorbelegung ohne Vorwert: obere Grenze der Plan-Spanne. Mit Vorwert: Ist-Wert desselben Satzes der letzten Einheit. | Im Normalfall reicht Abhaken. Passt zur Erfahrung aus dem ersten Training (überall 2 Wdh. mehr). |
 | 2026-10-12 | Keine Freitext-Notiz | Schlank halten, kann später nachgerüstet werden |
 | 2026-10-12 | Einseitige Übungen pro Seite getrennt erfassen, ohne Pause zwischen den Seiten, Pause erst nach beiden Seiten | Gerade beim Wiedereinstieg sind die Seiten unterschiedlich stark, beide Werte sollen sichtbar sein. Ersetzt die frühere Annahme eines gemeinsamen Werts. |
+| 2026-10-12 | Wartezeit auf die Anstrengung: 5 Sek., danach gilt „passend“ | Lang genug zum Tippen, kurz genug, dass es nicht bremst |
+| 2026-10-12 | Export und Import der persönlichen Daten als Datei („Daten sichern“, „Daten laden“) | Schutz vor Datenverlust bei lokaler Datenhaltung. Ein Export ohne Import bringt wenig. |
