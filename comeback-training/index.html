@@ -1,0 +1,403 @@
+<title>Comeback-Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: eine schmale Trainingsspalte von oben nach unten (Reihenfolge = Ablauf), Timer-Leiste fest unten */
+:root {
+  --bg: #F1F3F5;
+  --surface: #FFFFFF;
+  --fg: #15191E;
+  --muted: #5A6470;
+  --line: #DBE0E6;
+  --accent: #2C5E86;
+  --accent-soft: #E3ECF4;
+  --accent-ink: #FFFFFF;
+  --done: #2D7A57;
+  --done-soft: #E2F1E9;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Barlow", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111418; --surface: #1A1F25; --fg: #E7EBEF; --muted: #98A2AD; --line: #2B323A;
+    --accent: #80B1D9; --accent-soft: #1E2C38; --accent-ink: #0E1620;
+    --done: #5DC092; --done-soft: #19302A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111418; --surface: #1A1F25; --fg: #E7EBEF; --muted: #98A2AD; --line: #2B323A;
+  --accent: #80B1D9; --accent-soft: #1E2C38; --accent-ink: #0E1620;
+  --done: #5DC092; --done-soft: #19302A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  padding-inline: 16px; padding-block: 20px 140px;
+}
+.wrap { max-width: 640px; margin: 0 auto; display: grid; gap: 28px; }
+
+header { display: grid; gap: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 11vw, 56px); line-height: .95; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.lede { margin: 0; color: var(--muted); max-width: 60ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta span { font-size: 14px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+
+.progress { display: grid; gap: 6px; }
+.progress-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--done); transition: width .3s; }
+
+.prep { background: var(--accent-soft); border-radius: 12px; padding: 14px 16px; display: grid; gap: 6px; }
+.prep h2 { font-family: var(--font-display); font-size: 20px; margin: 0; letter-spacing: .02em; }
+.prep ul { margin: 0; padding-left: 20px; }
+
+section.block { display: grid; gap: 12px; }
+.block-head { display: grid; gap: 2px; border-bottom: 2px solid var(--fg); padding-bottom: 6px; }
+.block-head h2 { font-family: var(--font-display); font-size: 28px; line-height: 1.1; margin: 0; text-transform: uppercase; letter-spacing: .02em; }
+.block-head p { margin: 0; font-size: 14px; color: var(--muted); }
+.block-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.block-row h2 { min-width: 0; }
+.round { font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: .04em; text-transform: uppercase; padding: 2px 10px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.round.idle { background: var(--line); color: var(--muted); }
+.round.done { background: var(--done); color: var(--surface); }
+
+.ex { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; transition: border-color .2s; }
+.ex.is-done { border-color: var(--done); }
+.ex-top { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+.num { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--muted); line-height: 1.2; min-width: 1.6em; font-variant-numeric: tabular-nums; }
+.ex.is-done .num { color: var(--done); }
+.ex-title { min-width: 0; display: grid; gap: 2px; }
+.ex-title h3 { margin: 0; font-family: var(--font-display); font-size: 24px; font-weight: 600; line-height: 1.1; }
+.dose { font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+.facts { display: grid; gap: 8px; }
+.fact { display: grid; grid-template-columns: 92px 1fr; gap: 8px; font-size: 15px; }
+.fact dt { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; padding-top: 3px; }
+.fact dd { margin: 0; min-width: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 14px; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--fg); }
+.chip.none { background: transparent; border: 1px dashed var(--line); color: var(--muted); }
+.mus-primary { font-weight: 600; }
+.mus-secondary { color: var(--muted); }
+
+ol.steps { margin: 0; padding-left: 22px; display: grid; gap: 4px; }
+ol.steps li::marker { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tip { margin: 0; font-size: 15px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--bg); border-radius: 0 6px 6px 0; }
+.tip b { font-weight: 600; }
+
+.sets { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 4px; border-top: 1px solid var(--line); padding-top: 12px; }
+.sets-label { font-size: 13px; color: var(--muted); margin-right: 4px; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.set {
+  min-width: 76px; height: 40px; padding: 0 12px; border-radius: 8px;
+  border: 1.5px solid var(--line); background: var(--surface); color: var(--fg);
+  font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums;
+}
+.set[aria-pressed="true"] { background: var(--done); border-color: var(--done); color: var(--surface); }
+.hold { height: 40px; padding: 0 14px; border-radius: 8px; border: 1.5px solid var(--accent); background: transparent; color: var(--accent); font-weight: 600; font-size: 14px; }
+
+.reset-row { display: flex; justify-content: center; }
+.reset { background: none; border: 1px solid var(--line); color: var(--muted); padding: 8px 16px; border-radius: 8px; font-size: 14px; }
+.reset.confirm { border-color: var(--fg); color: var(--fg); }
+
+/* Timer-Leiste */
+.dock {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  background: var(--surface); border-top: 1px solid var(--line);
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.dock-in { max-width: 640px; margin: 0 auto; display: grid; gap: 8px; }
+.dock-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.clock { font-family: var(--font-display); font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; min-width: 2.6em; }
+.clock-label { font-size: 13px; color: var(--muted); flex: 1; min-width: 0; line-height: 1.3; }
+.clock-label b { display: block; color: var(--fg); font-size: 15px; }
+.dock-btns { display: flex; gap: 6px; }
+.tbtn { height: 40px; padding: 0 12px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); font-weight: 600; font-size: 14px; }
+.tbtn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.tbar { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+.tbar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.dock.running.work .tbar i { background: var(--done); }
+.dock.ended .clock { color: var(--done); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Ganzkörper · Kraft · Wiedereinstieg</div>
+    <h1>Comeback-Training</h1>
+    <p class="lede">Ohne Cardio, mit sauberer Technik. Lass in jedem Satz 2–3 Wiederholungen im Tank. Jeder Block läuft als Zirkel: Pro Runde machst du von jeder Übung einen Satz, insgesamt 3 Runden, also 3 Sätze pro Übung. Tippe nach jedem Satz auf das Feld, dann startet die Pause automatisch.</p>
+    <div class="meta"><span>ca. 35–40 Min.</span><span>Kurzhantel</span><span>Hip-Band</span><span>Matte</span></div>
+    <div class="progress">
+      <div class="progress-row"><span>Fortschritt</span><span id="progText">0 / 0</span></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+  </header>
+
+  <div class="prep">
+    <h2>Vor dem Start</h2>
+    <ul>
+      <li>Sternmuttern an der Hantel festziehen, sie lockern sich gern.</li>
+      <li>Band und Matte bereitlegen, Wasser in Reichweite.</li>
+      <li>Barfuß oder in flachen Schuhen trainieren.</li>
+    </ul>
+  </div>
+
+  <div id="plan"></div>
+
+  <div class="reset-row"><button class="reset" id="reset" type="button">Fortschritt zurücksetzen</button></div>
+</div>
+
+<div class="dock" id="dock" role="region" aria-label="Timer">
+  <div class="dock-in">
+    <div class="dock-row">
+      <div class="clock" id="clock" aria-live="off">0:00</div>
+      <div class="clock-label" id="clockLabel"><b>Bereit</b>Pause startet nach jedem Satz</div>
+      <div class="dock-btns" id="dockBtns"></div>
+    </div>
+    <div class="tbar"><i id="tbar"></i></div>
+  </div>
+</div>
+
+<script>
+const PLAN = [
+  {
+    id: "warm", title: "Aufwärmen", note: "5 Min. · ohne Pause, locker durchgehen", sets: 1,
+    ex: [
+      { id: "armkreisen", name: "Armkreisen", dose: "10× vorwärts, 10× rückwärts",
+        tools: [], primary: ["Schultern (Deltamuskeln)"], secondary: ["Rotatorenmanschette", "oberer Rücken"],
+        steps: ["Aufrecht stehen, Arme seitlich ausstrecken.", "Erst kleine, dann immer größere Kreise ziehen.", "Richtung wechseln."] },
+      { id: "bwsquat", name: "Kniebeugen ohne Gewicht", dose: "10 Wdh.",
+        tools: [], primary: ["Oberschenkelvorderseite", "Po"], secondary: ["Rumpf"],
+        steps: ["Füße schulterbreit, Arme nach vorne.", "Hüfte nach hinten unten setzen, Rücken gerade.", "Über die ganze Fußsohle hochdrücken."] },
+      { id: "warmbridge", name: "Hüftbrücke", dose: "10 Wdh.",
+        tools: ["Matte"], primary: ["Po"], secondary: ["hintere Oberschenkel", "unterer Rücken"],
+        steps: ["Rückenlage, Füße hüftbreit nah am Po.", "Becken anheben, bis Knie, Hüfte und Schultern eine Linie bilden.", "Langsam ablegen."] },
+      { id: "inchworm", name: "Inchworm", dose: "5 Wdh.",
+        tools: ["Matte"], primary: ["hintere Oberschenkel", "Schultern"], secondary: ["Rumpf"],
+        steps: ["Im Stand nach vorne beugen, Hände zum Boden.", "Mit den Händen nach vorne laufen bis in die Liegestützposition.", "Mit den Händen zurück zu den Füßen laufen und aufrichten."] }
+    ]
+  },
+  {
+    id: "a", title: "Block A · Beine & Drücken", note: "3 Runden · pro Runde 1 Satz je Übung · 60–90 Sek. Pause nach jedem Satz", sets: 3,
+    ex: [
+      { id: "goblet", name: "Goblet Squat", dose: "10–12 Wdh.",
+        tools: ["Kurzhantel"], primary: ["Oberschenkelvorderseite (Quadrizeps)", "Po (großer Gesäßmuskel)"], secondary: ["Adduktoren", "Rumpf", "oberer Rücken"],
+        steps: ["Hantel senkrecht halten, beide Hände unter der oberen Scheibe, eng vor der Brust.", "Füße etwas weiter als schulterbreit, Fußspitzen leicht nach außen.", "Hüfte nach hinten unten setzen, Knie folgen den Fußspitzen.", "So tief, wie der Rücken gerade bleibt, dann über die Fersen hochdrücken."],
+        tip: "Die Ellbogen zielen unten zwischen die Knie. Brust bleibt oben." },
+      { id: "pushup", name: "Liegestütze", dose: "6–12 Wdh.",
+        tools: ["Matte"], primary: ["Brust", "Trizeps"], secondary: ["vordere Schulter", "Rumpf"],
+        steps: ["Hände etwas weiter als schulterbreit, Körper bildet ein Brett.", "Ellbogen im 45°-Winkel zum Körper beugen, Brust bis knapp über den Boden.", "Kräftig hochdrücken, Po nicht hängen lassen."],
+        tip: "Schaffst du keine 6 sauberen, setz die Knie ab. Technik vor Anzahl." }
+    ]
+  },
+  {
+    id: "b", title: "Block B · Rücken & Po", note: "3 Runden · pro Runde 1 Satz je Übung · 60–90 Sek. Pause nach jedem Satz", sets: 3,
+    ex: [
+      { id: "row", name: "Einarmiges Rudern", dose: "10 Wdh. pro Seite",
+        tools: ["Kurzhantel", "Stuhl (optional)"], primary: ["breiter Rückenmuskel (Latissimus)", "mittlerer Rücken (Rhomboiden, Trapez)"], secondary: ["Bizeps", "hintere Schulter", "Rumpf"],
+        steps: ["Schrittstellung, Oberkörper nach vorne neigen, freie Hand auf dem Knie oder einem stabilen Stuhl.", "Hantel hängt unter der Schulter, Rücken gerade.", "Ellbogen eng am Körper Richtung Hüfte ziehen.", "Kontrolliert absenken, dann Seite wechseln."],
+        tip: "Zieh mit dem Ellbogen, nicht mit der Hand. Schulter nicht zum Ohr hochziehen." },
+      { id: "bandbridge", name: "Glute Bridge mit Band", dose: "15 Wdh. · oben 2 Sek. halten",
+        tools: ["Hip-Band", "Matte"], primary: ["Po (großer Gesäßmuskel)", "seitlicher Po (mittlerer Gesäßmuskel)"], secondary: ["hintere Oberschenkel"],
+        steps: ["Band knapp über die Knie ziehen, Rückenlage, Füße hüftbreit.", "Knie aktiv gegen das Band nach außen drücken.", "Becken hochschieben, oben 2 Sek. den Po fest anspannen.", "Langsam ablegen, Spannung im Band halten."],
+        tip: "Drück über die Fersen. Der untere Rücken bleibt neutral, kein Hohlkreuz." }
+    ]
+  },
+  {
+    id: "c", title: "Block C · Schultern & Rumpf", note: "3 Runden · pro Runde 1 Satz je Übung · 60–90 Sek. Pause nach jedem Satz", sets: 3,
+    ex: [
+      { id: "press", name: "Einarmiges Schulterdrücken", dose: "8–10 Wdh. pro Seite",
+        tools: ["Kurzhantel"], primary: ["Schultern (vordere und seitliche Deltamuskeln)"], secondary: ["Trizeps", "Rumpf (gegen Seitneigung)"],
+        steps: ["Im Stand, Hantel auf Schulterhöhe, Handfläche zeigt nach vorne oder zur Seite.", "Bauch und Po anspannen.", "Hantel gerade nach oben drücken, ohne zur Seite zu kippen.", "Kontrolliert zurück auf Schulterhöhe, dann Seite wechseln."],
+        tip: "Kein Hohlkreuz: Rippen unten lassen, als würdest du gleich einen Stoß in den Bauch abfangen." },
+      { id: "walk", name: "Seitliche Band-Walks", dose: "10 Schritte pro Richtung",
+        tools: ["Hip-Band"], primary: ["seitlicher Po (mittlerer und kleiner Gesäßmuskel)"], secondary: ["Hüftabduktoren", "Oberschenkel"],
+        steps: ["Band knapp über die Knie, leichte Hocke.", "Mit einem Fuß seitlich hinaussteigen, der andere folgt, Band bleibt gespannt.", "10 Schritte in eine Richtung, dann 10 zurück."],
+        tip: "Oberkörper ruhig halten, nicht hin und her schaukeln. Die Füße schlagen nie zusammen." },
+      { id: "plank", name: "Unterarmstütz", dose: "30–45 Sek. halten", hold: 40,
+        tools: ["Matte"], primary: ["gerader und querer Bauchmuskel"], secondary: ["Schultern", "Po", "Oberschenkel"],
+        steps: ["Ellbogen unter den Schultern, Unterarme parallel.", "Körper bildet eine Linie von Kopf bis Ferse.", "Bauch und Po anspannen, ruhig weiteratmen."],
+        tip: "Lieber 30 saubere Sekunden als 45 mit hängender Hüfte. Starte den Halte-Timer und tippe danach den Satz an." }
+    ]
+  },
+  {
+    id: "cool", title: "Abschluss", note: "3 Min. · ruhig atmen, nicht federn", sets: 1,
+    ex: [
+      { id: "hipflexor", name: "Hüftbeuger-Dehnung", dose: "30 Sek. pro Seite",
+        tools: ["Matte"], primary: ["Hüftbeuger (Iliopsoas)"], secondary: ["Oberschenkelvorderseite"],
+        steps: ["Kniender Ausfallschritt, hinteres Knie auf der Matte.", "Po anspannen und das Becken leicht nach vorne schieben.", "Halten, dann Seite wechseln."] },
+      { id: "child", name: "Kindhaltung", dose: "45–60 Sek.",
+        tools: ["Matte"], primary: ["unterer Rücken", "breiter Rückenmuskel"], secondary: ["Hüfte", "Schultern"],
+        steps: ["Auf die Fersen setzen, Knie leicht geöffnet.", "Arme weit nach vorne strecken, Stirn ablegen.", "In den unteren Rücken atmen."] },
+      { id: "chest", name: "Brustdehnung im Türrahmen", dose: "30 Sek. pro Seite",
+        tools: ["Türrahmen"], primary: ["Brust"], secondary: ["vordere Schulter"],
+        steps: ["Unterarm auf Schulterhöhe an den Türrahmen legen.", "Oberkörper langsam von der Wand wegdrehen, bis es in der Brust zieht.", "Halten, dann Seite wechseln."] }
+    ]
+  }
+];
+
+const KEY = "comeback-training-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const plan = document.getElementById("plan");
+let total = 0, n = 0;
+const order = []; // flat list of {exId, set, name}
+
+plan.innerHTML = PLAN.map((b, bi) => {
+  const cards = b.ex.map((e, ei) => {
+    n++;
+    const tools = e.tools.length ? e.tools.map(t => `<span class="chip">${esc(t)}</span>`).join("") : `<span class="chip none">keine</span>`;
+    const setBtns = Array.from({ length: b.sets }, (_, i) => {
+      total++; order.push({ ex: e.id, set: i, name: e.name, block: b.id, bi, ei });
+      const label = b.sets > 1 ? `Satz ${i + 1}` : "Erledigt";
+      return `<button type="button" class="set" id="s-${e.id}-${i}" data-ex="${e.id}" data-set="${i}" aria-pressed="false">${label}</button>`;
+    }).join("");
+    const hold = e.hold ? `<button type="button" class="hold" id="h-${e.id}" data-hold="${e.hold}" data-name="${esc(e.name)}">Halten ${e.hold} s</button>` : "";
+    return `<article class="ex" id="ex-${e.id}">
+      <div class="ex-top">
+        <div class="num">${String(n).padStart(2, "0")}</div>
+        <div class="ex-title"><h3>${esc(e.name)}</h3><div class="dose">${esc(e.dose)}</div></div>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Hilfsmittel</dt><dd>${tools}</dd></div>
+        <div class="fact"><dt>Muskeln</dt><dd><span><span class="mus-primary">${e.primary.map(esc).join(", ")}</span><br><span class="mus-secondary">dazu: ${e.secondary.map(esc).join(", ")}</span></span></dd></div>
+      </dl>
+      <ol class="steps">${e.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+      ${e.tip ? `<p class="tip"><b>Tipp:</b> ${esc(e.tip)}</p>` : ""}
+      <div class="sets"><span class="sets-label">${b.sets > 1 ? "Sätze" : ""}</span>${hold}${setBtns}</div>
+    </article>`;
+  }).join("");
+  const badge = b.sets > 1 ? `<span class="round" id="r-${b.id}"></span>` : "";
+  return `<section class="block" id="${b.id}"><div class="block-head"><div class="block-row"><h2>${esc(b.title)}</h2>${badge}</div><p>${esc(b.note)}</p></div>${cards}</section>`;
+}).join("");
+
+// Ablauf rundenweise: innerhalb eines Blocks erst alle Übungen von Runde 1, dann Runde 2, dann Runde 3
+order.sort((x, y) => x.bi - y.bi || x.set - y.set || x.ei - y.ei);
+
+const isDone = (ex, s) => !!(state[ex] && state[ex][s]);
+function nextUp() { return order.find(o => !isDone(o.ex, o.set)); }
+function where(o) {
+  const b = PLAN.find(x => x.id === o.block);
+  if (b.sets === 1) return b.title;
+  return `${b.title.split(" · ")[0]} · Runde ${o.set + 1} von ${b.sets} · Satz ${o.set + 1}`;
+}
+
+function render() {
+  let done = 0;
+  order.forEach(o => {
+    const d = isDone(o.ex, o.set); if (d) done++;
+    document.getElementById(`s-${o.ex}-${o.set}`).setAttribute("aria-pressed", d);
+  });
+  PLAN.forEach(b => b.ex.forEach(e => {
+    const all = order.filter(o => o.ex === e.id).every(o => isDone(o.ex, o.set));
+    document.getElementById("ex-" + e.id).classList.toggle("is-done", all);
+  }));
+  const nx = nextUp();
+  PLAN.filter(b => b.sets > 1).forEach(b => {
+    const el = document.getElementById("r-" + b.id);
+    const open = order.filter(o => o.block === b.id && !isDone(o.ex, o.set));
+    if (!open.length) { el.className = "round done"; el.textContent = "Erledigt"; return; }
+    const r = Math.min(...open.map(o => o.set)) + 1;
+    el.className = "round" + (nx && nx.block === b.id ? "" : " idle");
+    el.textContent = `Runde ${r} / ${b.sets}`;
+  });
+  document.getElementById("progText").textContent = `${done} / ${total}`;
+  document.getElementById("progBar").style.width = (done / total * 100) + "%";
+  if (!timer.running) idleLabel();
+}
+
+/* Timer */
+const dock = document.getElementById("dock"), clock = document.getElementById("clock"),
+      clockLabel = document.getElementById("clockLabel"), tbar = document.getElementById("tbar"),
+      btns = document.getElementById("dockBtns");
+const timer = { running: false, end: 0, dur: 0, raf: 0, mode: "rest" };
+let audio, wake;
+const fmt = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+
+function idleLabel() {
+  const nx = nextUp();
+  clock.textContent = "0:00"; tbar.style.width = "0";
+  clockLabel.innerHTML = nx ? `<b>Als Nächstes: ${esc(nx.name)}</b>${esc(where(nx))}` : `<b>Geschafft!</b>Starke Einheit. Trink was.`;
+  btns.innerHTML = `<button type="button" class="tbtn" data-t="60">60 s</button><button type="button" class="tbtn" data-t="90">90 s</button>`;
+}
+function beep() {
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    [0, .25, .5].forEach(t => {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = 880; o.connect(g); g.connect(audio.destination);
+      g.gain.setValueAtTime(.2, audio.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, audio.currentTime + t + .2);
+      o.start(audio.currentTime + t); o.stop(audio.currentTime + t + .22);
+    });
+  } catch (e) {}
+  try { navigator.vibrate && navigator.vibrate([200, 100, 200]); } catch (e) {}
+}
+async function keepAwake() { try { if (!wake && navigator.wakeLock) { wake = await navigator.wakeLock.request("screen"); wake.addEventListener("release", () => wake = null); } } catch (e) {} }
+
+function start(sec, mode, label) {
+  try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume && audio.resume(); } catch (e) {}
+  keepAwake();
+  cancelAnimationFrame(timer.raf);
+  Object.assign(timer, { running: true, end: Date.now() + sec * 1000, dur: sec, mode });
+  dock.className = "dock running " + mode;
+  const nx = nextUp();
+  clockLabel.innerHTML = mode === "work" ? `<b>${esc(label)}</b>Halten, ruhig atmen` : `<b>Pause${nx ? " · danach " + esc(nx.name) : ""}</b>${nx ? esc(where(nx)) : "Gleich geschafft"}`;
+  btns.innerHTML = `<button type="button" class="tbtn" data-add="15">+15</button><button type="button" class="tbtn primary" data-stop="1">Stopp</button>`;
+  tick();
+}
+function tick() {
+  const left = Math.max(0, Math.ceil((timer.end - Date.now()) / 1000));
+  clock.textContent = fmt(left);
+  tbar.style.width = (100 - (timer.end - Date.now()) / (timer.dur * 1000) * 100) + "%";
+  if (left <= 0) { finish(true); return; }
+  timer.raf = requestAnimationFrame(tick);
+}
+function finish(ended) {
+  cancelAnimationFrame(timer.raf);
+  timer.running = false;
+  if (ended) {
+    beep();
+    dock.className = "dock ended";
+    const wasWork = timer.mode === "work";
+    idleLabel();
+    clock.textContent = "0:00";
+    clockLabel.innerHTML = wasWork ? `<b>Zeit um</b>Tippe jetzt den Satz an` : (nextUp() ? `<b>Pause vorbei · ${esc(nextUp().name)}</b>${esc(where(nextUp()))}` : `<b>Pause vorbei</b>Fertig`);
+  } else { dock.className = "dock"; idleLabel(); }
+}
+
+document.addEventListener("click", ev => {
+  const s = ev.target.closest(".set");
+  if (s) {
+    const ex = s.dataset.ex, i = +s.dataset.set;
+    state[ex] = state[ex] || {};
+    const now = !state[ex][i]; state[ex][i] = now; save();
+    const o = order.find(x => x.ex === ex && x.set === i);
+    const block = PLAN.find(b => b.id === o.block);
+    render();
+    if (now && block.sets > 1 && nextUp()) start(60, "rest");
+    return;
+  }
+  const h = ev.target.closest(".hold");
+  if (h) { start(+h.dataset.hold, "work", h.dataset.name); return; }
+  const t = ev.target.closest("[data-t]"); if (t) { start(+t.dataset.t, "rest"); return; }
+  const a = ev.target.closest("[data-add]"); if (a && timer.running) { timer.end += 15000; timer.dur += 15; return; }
+  if (ev.target.closest("[data-stop]")) { finish(false); return; }
+});
+
+const resetBtn = document.getElementById("reset"); let armed = 0;
+resetBtn.addEventListener("click", () => {
+  if (!armed) { resetBtn.textContent = "Wirklich zurücksetzen? Nochmal tippen"; resetBtn.classList.add("confirm"); armed = setTimeout(() => { armed = 0; resetBtn.textContent = "Fortschritt zurücksetzen"; resetBtn.classList.remove("confirm"); }, 3000); return; }
+  clearTimeout(armed); armed = 0; state = {}; save(); finish(false); render();
+  resetBtn.textContent = "Fortschritt zurückgesetzt"; resetBtn.classList.remove("confirm");
+  setTimeout(() => resetBtn.textContent = "Fortschritt zurücksetzen", 2000);
+});
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible" && timer.running) keepAwake(); });
+
+render();
+</script>
