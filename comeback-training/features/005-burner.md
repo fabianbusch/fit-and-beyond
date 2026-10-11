@@ -51,7 +51,7 @@ Am Ende der Hauptblöcke bietet die App einen optionalen **Burner** an: eine eig
    | Seitstütz mit Hüftheben | seitlicher Rumpf | Matte | Hüftheber, pro Seite |
 
 5. **Vorschlag der App:** Die App schlägt automatisch den Burner vor, dessen Zielregion am längsten nicht dran war. Grundlage ist der Burner-Verlauf im Trainingsprotokoll (001). Gibt es noch keinen Verlauf oder sind mehrere gleich lange her, gilt die Reihenfolge der Liste.
-6. **Wechseln:** Passt der Vorschlag nicht, lässt er sich über die Alternativen aus 007 gegen einen anderen Burner der Liste tauschen. Die Regeln dazu legt 007 fest.
+6. **Wechseln:** Passt der Vorschlag nicht, lässt er sich per Swipe gegen einen anderen Burner der Liste tauschen. Das kostet einen der zwei Joker der Einheit, einen separaten Burner-Wechsel gibt es nicht (007, Regeln 11–13).
 
 ### Durchführung
 
@@ -64,7 +64,7 @@ Am Ende der Hauptblöcke bietet die App einen optionalen **Burner** an: eine eig
 
 ### Erfassung
 
-13. **Ist-Wert:** Nach dem Endsignal trägt Fabian die geschafften Wiederholungen ein, beim Seitstütz pro Seite. Vorbelegung: der Wert desselben Burners aus der letzten Einheit mit diesem Burner. Siehe offene Frage 1.
+13. **Ist-Wert:** Nach dem Endsignal trägt Fabian die geschafften Wiederholungen ein, beim Seitstütz pro Seite. Vorbelegung: der Wert desselben Burners aus der letzten Einheit mit diesem Burner. Beim ersten Mal ist das Feld **leer** und muss ausgefüllt werden.
 14. **Anstrengung:** Danach erscheint wie überall die Anstrengungsauswahl mit 5 Sek. Wartezeit (001, Regel 3).
 15. **Keine Pause danach:** Nach dem Burner startet kein Pausentimer, es geht direkt in den Abschluss.
 16. **Zeiten:** Die Übungszeit zählt wie in 002, ab „Los“ inklusive 3-2-1. Die Gesamtuhr läuft weiter.
@@ -83,7 +83,7 @@ Am Ende der Hauptblöcke bietet die App einen optionalen **Burner** an: eine eig
 
 ## Offene Fragen
 
-1. **Vorbelegung beim ersten Mal:** Für einen Burner ohne Vorwert gibt es keine Plan-Spanne, deren Obergrenze man nehmen könnte. Soll das Feld dann leer sein, sodass man die Zahl eintippen muss? Vorschlag: leer, weil eine geratene Zahl beim Ausreizen nichts aussagt.
+Keine.
 
 ## Entscheidungen
 
@@ -93,3 +93,5 @@ Am Ende der Hauptblöcke bietet die App einen optionalen **Burner** an: eine eig
 | 2026-10-12 | Zeitbasiert: 1 Satz, 40 Sek., so viele saubere Wiederholungen wie möglich, mit „Los“ und Signalen aus 003 | Beim Burner geht es ums Ausreizen, nicht ums Abzählen. Einheitlich mit allen Zeitübungen. |
 | 2026-10-12 | Die App schlägt den Burner vor, dessen Zielregion am längsten nicht dran war. Wechseln über 007. | Abwechslung ohne Nachdenken nach dem Training |
 | 2026-10-12 | Burner-Liste bestätigt: Liegestütze bis zum Limit, Goblet-Squat-Pulses, Glute-Bridge-Pulses mit Band, Seitstütz mit Hüftheben | Passt zum vorhandenen Equipment und deckt Oberkörper, Beine, Po und Rumpf ab |
+| 2026-10-12 | Burner-Wechsel kostet einen der zwei Joker aus 007 | Eine Regel für alle Wechsel |
+| 2026-10-12 | Wiederholungsfeld beim ersten Burner leer, danach mit dem letzten Ist-Wert vorbelegt | Es gibt keine Plan-Spanne, und eine geratene Zahl ist beim Ausreizen nicht aussagekräftig |
