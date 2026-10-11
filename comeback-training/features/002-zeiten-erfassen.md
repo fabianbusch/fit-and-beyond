@@ -30,7 +30,7 @@ Die App misst automatisch, wie lange gearbeitet und wie lange pausiert wurde, un
 
 1. **Start der Einheit:** Die Einheit beginnt mit dem ersten abgehakten Eintrag oder dem ersten gestarteten Timer, je nachdem, was zuerst passiert.
 2. **Ende der Einheit:** Die Einheit endet mit „Einheit abschließen“ (001).
-3. **Pausenzeit:** von dem Moment, in dem ein Satz abgehakt wird, bis zum Beginn des nächsten Satzes.
+3. **Pausenzeit:** von dem Moment, in dem ein Satz abgehakt wird, bis zum Beginn des nächsten Satzes. Bei einseitigen Übungen beginnt sie erst mit dem Abhaken der zweiten Seite. Die Zeit zwischen den Seiten zählt zur Übungszeit (siehe 001, Regel 2 und 11).
 4. **Übungszeit:** vom Beginn eines Satzes bis zu seinem Abhaken.
 5. **Beginn eines Satzes:** Siehe offene Frage 1, das ist der Kern dieses Features.
 6. **Überziehen:** Läuft eine Pause länger als der Timer, zählt die Überziehung zur Pausenzeit. Die Timer-Leiste zählt nach Ablauf sichtbar weiter, z. B. „+0:12“.

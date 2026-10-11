@@ -1,7 +1,7 @@
 # 001 – Ist-Leistung erfassen
 
 **Status:** Entwurf
-**Erstellt:** 2026-10-11
+**Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Option Notiz, wie viel ich wirklich gemacht habe (Score) → für Planung next Training“
 
 ## Problem
@@ -10,18 +10,27 @@ Der Plan gibt Spannen vor (z. B. 10–12 Wdh.). Was wirklich geschafft wurde, ge
 
 ## Ziel
 
-Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleistet wurde. Die Einheit wird als **Trainingsprotokoll** gespeichert. Beim nächsten Training sieht Fabian pro Übung, was er letztes Mal geschafft hat.
+Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleistet wurde und wie anstrengend es war. Die Einheit wird als **Trainingsprotokoll** gespeichert. Beim nächsten Training sieht Fabian pro Übung, was er letztes Mal geschafft hat.
+
+## Neue Begriffe
+
+- **Ist-Wert:** die tatsächlich geleistete Menge eines Satzes, also Wiederholungen, Schritte oder Sekunden.
+- **Anstrengung:** Einschätzung eines Satzes in drei Stufen: „leicht“, „passend“, „am Limit“.
+- **Trainingsprotokoll:** gespeicherte Einheit mit Datum und allen Ist-Werten, Anstrengungen und Gewichten.
 
 ## Scope
 
 **Drin:**
 - Ist-Wert pro Satz in Zirkel-Blöcken (A–C)
+- Anstrengung pro Satz
+- Einseitige Übungen getrennt pro Seite
 - Gewicht pro Übung bei Hantelübungen
 - Speichern der Einheit als Trainingsprotokoll mit Datum
 - Anzeige „Letztes Mal“ pro Übung
 - Liste vergangener Einheiten (Datum, Dauer, erledigte Sätze)
 
 **Nicht drin:**
+- Freitext-Notizen. Bewusst weggelassen, kann später nachgerüstet werden.
 - Automatische Steigerungsvorschläge (eigenes Feature, baut hierauf auf)
 - Diagramme und Auswertungen über Wochen
 - Synchronisierung zwischen Geräten
@@ -29,38 +38,54 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 
 ## Fachliche Regeln
 
-1. **Messgröße je Übung:** Die Ist-Leistung wird in der Einheit der Dosierung erfasst:
+1. **Messgröße je Übung:** Der Ist-Wert wird in der Einheit der Dosierung erfasst:
    - Wiederholungen: Goblet Squat, Liegestütze, Rudern, Glute Bridge, Schulterdrücken
    - Schritte: Band-Walks
    - Sekunden: Unterarmstütz
-2. **Übungen pro Seite:** Rudern und Schulterdrücken erfassen einen Wert, der für beide Seiten gilt. Siehe offene Frage 4.
-3. **Gewicht:** Hantelübungen (Goblet Squat, Rudern, Schulterdrücken) haben ein Gewichtsfeld in kg, in 0,5-kg-Schritten. Das Gewicht gilt für alle Sätze der Übung, solange es nicht geändert wird.
-4. **Vorbelegung:** Das Eingabefeld ist vorbelegt mit dem Ist-Wert desselben Satzes aus der letzten Einheit. Gibt es noch keinen, mit der oberen Grenze der Plan-Spanne. Siehe offene Frage 2.
-5. **Schnellweg:** Wird ein Satz ohne Änderung abgehakt, gilt der vorbelegte Wert als geleistet. Der typische Fall braucht also keinen zusätzlichen Tap.
-6. **Anpassen:** Über „−“ und „+“ neben dem Wert lässt er sich in Einerschritten ändern, bei Sekunden in 5er-Schritten. Das geht auch nachträglich, solange die Einheit nicht abgeschlossen ist.
-7. **Einheit abschließen:** Sind alle Pflichtsätze erledigt, bietet die App „Einheit abschließen“ an. Erst dann wird das Protokoll endgültig gespeichert, und der Tagesfortschritt wird zurückgesetzt.
-8. **Abgebrochene Einheit:** Ist eine Einheit nach 12 Stunden noch nicht abgeschlossen, wird sie beim nächsten Öffnen als „abgebrochen“ mit den bis dahin erfassten Sätzen gespeichert.
-9. **Letztes Mal:** Jede Übungskarte zeigt eine Zeile wie „Letztes Mal: 12 · 12 · 11 Wdh. mit 10 kg“, sobald ein Protokoll existiert.
-10. **Datenhaltung:** Siehe Abschnitt „Rahmenbedingungen“ im Fachkonzept. Alles bleibt lokal im Browser.
+2. **Einseitige Übungen:** Rudern und Schulterdrücken werden pro Seite getrennt erfasst. Jede Seite hat einen eigenen Ist-Wert und eine eigene Anstrengung. Ablauf im Training:
+   - Erst die linke Seite ausführen und abhaken, dann direkt die rechte.
+   - Zwischen den Seiten gibt es **keine Pause**.
+   - Der Pausentimer startet erst, wenn beide Seiten erfasst sind.
+   - Ein Satz einer einseitigen Übung gilt erst als erledigt, wenn beide Seiten erfasst sind.
+3. **Anstrengung:** Direkt nach dem Abhaken eines Satzes, bei einseitigen Übungen einer Seite, erscheint daneben die Auswahl „leicht“, „passend“, „am Limit“.
+   - Tippt Fabian eine Stufe, wird sie gespeichert. Danach startet die Pause, bei der ersten Seite einer einseitigen Übung geht es direkt zur zweiten Seite.
+   - Tippt er keine Stufe, gilt der Satz nach kurzer Zeit als „passend“, und es geht genauso weiter. Siehe offene Frage 2.
+   - Die Anstrengung lässt sich nachträglich ändern, solange die Einheit nicht abgeschlossen ist.
+4. **Gewicht:** Hantelübungen (Goblet Squat, Rudern, Schulterdrücken) haben ein Gewichtsfeld in kg, in 0,5-kg-Schritten. Das Gewicht gilt für alle Sätze und beide Seiten der Übung, solange es nicht geändert wird.
+5. **Vorbelegung:** Das Ist-Wert-Feld ist vorbelegt:
+   - mit dem Ist-Wert desselben Satzes, bei einseitigen Übungen derselben Seite, aus der letzten Einheit,
+   - ohne Vorwert mit der **oberen Grenze** der Plan-Spanne, z. B. 12 beim Goblet Squat.
+6. **Schnellweg:** Wird ein Satz ohne Änderung abgehakt und keine Anstrengung getippt, gelten Vorbelegung und „passend“. Der typische Fall braucht also keinen zusätzlichen Tap.
+7. **Anpassen:** Über „−“ und „+“ neben dem Wert lässt er sich in Einerschritten ändern, bei Sekunden in 5er-Schritten. Das geht auch nachträglich, solange die Einheit nicht abgeschlossen ist.
+8. **Einheit abschließen:** Sind alle Pflichtsätze erledigt, bietet die App „Einheit abschließen“ an. Erst dann wird das Protokoll endgültig gespeichert, und der Tagesfortschritt wird zurückgesetzt.
+9. **Abgebrochene Einheit:** Ist eine Einheit nach 12 Stunden noch nicht abgeschlossen, wird sie beim nächsten Öffnen als „abgebrochen“ mit den bis dahin erfassten Sätzen gespeichert.
+10. **Letztes Mal:** Jede Übungskarte zeigt eine Zeile wie „Letztes Mal: 12 · 12 · 11 Wdh. mit 10 kg“, sobald ein Protokoll existiert. Bei einseitigen Übungen getrennt, z. B. „L 10 · 10 · 9 / R 10 · 9 · 9 mit 8 kg“.
+11. **Bezug zu 002 (Zeiten):** Bei einseitigen Übungen beginnt die Pausenzeit mit dem Abhaken der zweiten Seite. Die Zeit zwischen den Seiten zählt zur Übungszeit, nicht zur Pause.
+12. **Datenhaltung:** Siehe Abschnitt „Rahmenbedingungen“ im Fachkonzept. Alles bleibt lokal im Browser.
 
 ## Akzeptanzkriterien
 
 - [ ] Fabian kann im Training jeden Satz mit höchstens einem zusätzlichen Tap von der Vorbelegung abweichend erfassen.
+- [ ] Nach dem Abhaken erscheint die Anstrengungsauswahl. Ein Tap auf eine Stufe startet die Pause.
+- [ ] Ohne Tap auf eine Stufe startet die Pause nach kurzer Zeit von selbst, und der Satz ist als „passend“ gespeichert.
+- [ ] Bei Rudern und Schulterdrücken werden links und rechts getrennt erfasst, zwischen den Seiten startet keine Pause, nach der rechten Seite schon.
+- [ ] Beim ersten Training ist jedes Feld mit der oberen Grenze der Plan-Spanne vorbelegt.
 - [ ] Nach „Einheit abschließen“ erscheint die Einheit mit Datum in der Verlaufsliste.
-- [ ] Beim nächsten Öffnen zeigt jede Zirkel-Übung „Letztes Mal“ mit den Werten aller 3 Sätze und dem Gewicht.
+- [ ] Beim nächsten Öffnen zeigt jede Zirkel-Übung „Letztes Mal“ mit den Werten aller 3 Sätze, bei einseitigen Übungen pro Seite, und dem Gewicht.
 - [ ] Die Felder sind beim nächsten Training mit den Werten der letzten Einheit vorbelegt.
-- [ ] Nach Neuladen der Seite mitten im Training sind die bereits erfassten Werte noch da.
+- [ ] Nach Neuladen der Seite mitten im Training sind die bereits erfassten Werte und Anstrengungen noch da.
 
 ## Offene Fragen
 
-1. **Anstrengung erfassen?** Zusätzlich pro Satz eine Einschätzung wie „leicht / passend / am Limit“ oder Reserve-Wiederholungen (RIR 0–4)? Das wäre die beste Grundlage für Steigerungsvorschläge, kostet aber einen weiteren Tap.
-2. **Vorbelegung ohne Vorwert:** obere Grenze der Spanne, untere Grenze oder leer?
-3. **Freitext-Notiz:** Pro Übung oder pro Einheit ein Notizfeld, z. B. „linke Schulter zwickt“?
-4. **Seiten getrennt?** Rudern und Schulterdrücken links und rechts getrennt erfassen? Genauer, aber doppelte Eingabe.
-5. **Sicherung:** Daten im Browser können beim Leeren des Browsers verloren gehen. Soll es einen Export als Datei geben, um das abzusichern?
+1. **Sicherung:** Daten im Browser können beim Leeren des Browsers verloren gehen. Soll es einen Export als Datei geben, um das abzusichern?
+2. **Wartezeit bis „passend“:** Wie lange wartet die App auf die Anstrengung, bevor sie „passend“ annimmt? Vorschlag: 5 Sek.
 
 ## Entscheidungen
 
 | Datum | Entscheidung | Begründung |
 |---|---|---|
 | 2026-10-11 | Daten lokal im Browser | Vorgabe Fabian: erst lokal, bis es ein echtes Backend gibt |
+| 2026-10-12 | Anstrengung pro Satz mit drei Stufen „leicht / passend / am Limit“. Ohne Tap gilt „passend“, die Pause startet trotzdem. | Bleibt schlank, nur ein Tap mehr. Beste Grundlage für spätere Steigerungsvorschläge. Wörter statt Reserve-Zahlen (RIR), bewusst zum Einstieg. |
+| 2026-10-12 | Vorbelegung ohne Vorwert: obere Grenze der Plan-Spanne. Mit Vorwert: Ist-Wert desselben Satzes der letzten Einheit. | Im Normalfall reicht Abhaken. Passt zur Erfahrung aus dem ersten Training (überall 2 Wdh. mehr). |
+| 2026-10-12 | Keine Freitext-Notiz | Schlank halten, kann später nachgerüstet werden |
+| 2026-10-12 | Einseitige Übungen pro Seite getrennt erfassen, ohne Pause zwischen den Seiten, Pause erst nach beiden Seiten | Gerade beim Wiedereinstieg sind die Seiten unterschiedlich stark, beide Werte sollen sichtbar sein. Ersetzt die frühere Annahme eines gemeinsamen Werts. |
