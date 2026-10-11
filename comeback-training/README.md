@@ -17,10 +17,10 @@ Persönlicher Trainingsbegleiter für ein Ganzkörper-Krafttraining zu Hause. Di
 | [004](features/004-muskelkarte.md) | Muskelkarte am Körpermodell (nur Markierung) | Entwurf | keine | |
 | [005](features/005-burner.md) | Burner: optionale Zusatzübung | Entwurf | keine | 001, 002, 003, 006, 007 |
 | [006](features/006-halteuebungen-auto-abhaken.md) | Zeitübungen automatisch abhaken | Entwurf | keine | 001, 002, 003 |
-| [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | Entwurf | 2 | 001, 002 |
+| [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | Entwurf | keine | 001, 002 |
 | [008](features/008-bewegungsmodell.md) | Bewegungsdarstellung der Übungen (menschliches Modell) | Entwurf · großes Feature | 6 | |
 | [009](features/009-steigerung.md) | Automatische Steigerungsvorschläge (Progression) | Entwurf · großes Feature | 7 | 001 |
 
-**Fachlich ohne offene Fragen:** 001, 002, 003, 004, 005, 006. Sie warten auf Fabians Freigabe.
+**Fachlich ohne offene Fragen:** 001 bis 007. Sie warten auf Fabians Freigabe.
 
 **Vorgeschlagene Reihenfolge der Umsetzung:** 001 → 002 → 003 → 006 (Fundament: Erfassen, Los-Knopf, Signale, Zeitübungen) → 007 → 005 → 004. Danach die großen Features 009 (braucht echte Daten aus 001) und 008.

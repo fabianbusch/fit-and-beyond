@@ -31,7 +31,7 @@ Eine Übung lässt sich vor dem Start mit einer Wischgeste gegen eine gleichwert
 
 **Nicht drin:**
 - Alternativen für Aufwärmen und Abschluss
-- Dauerhaftes Ersetzen im Plan (siehe offene Frage 2)
+- Dauerhaftes Ersetzen im Plan und Vorschläge dazu bei häufig gewählten Alternativen. Möglicher späterer Ausbau, thematisch bei den „lernenden“ Funktionen wie 009.
 - Eigene Übungen anlegen
 
 ## Fachliche Regeln
@@ -69,7 +69,7 @@ Eine Übung lässt sich vor dem Start mit einer Wischgeste gegen eine gleichwert
 
 ### Katalog
 
-17. **Alternativen-Katalog (Vorschlag):**
+17. **Alternativen-Katalog (Startpunkt, bestätigt):**
 
    | Übung | Alternative 1 | Alternative 2 |
    |---|---|---|
@@ -81,6 +81,8 @@ Eine Übung lässt sich vor dem Start mit einer Wischgeste gegen eine gleichwert
    | Seitliche Band-Walks | Clamshells mit Band | Monster Walks mit Band (diagonal) |
    | Unterarmstütz | Dead Bug | Seitstütz, pro Seite |
    | Burner | die vier Burner aus 005 | |
+
+18. **Katalog erweiterbar:** Der Katalog ist ein Startpunkt. Fabian erprobt ihn im Training und ergänzt ihn später bei Bedarf, z. B. wenn ihm eine Übung einfällt oder er mehr Auswahl braucht. Dosierung und Ablauf jeder Alternative werden bei der Umsetzung nach demselben Muster wie bei den Original-Übungen ausgearbeitet.
 
 ## Akzeptanzkriterien
 
@@ -95,8 +97,7 @@ Eine Übung lässt sich vor dem Start mit einer Wischgeste gegen eine gleichwert
 
 ## Offene Fragen
 
-1. **Katalog:** Passen die Alternativen? Für jede Alternative fehlen noch Dosierung und Ablauf, z. B. ob der Rückwärts-Ausfallschritt pro Seite gezählt wird. Die Kurzhantel-Varianten brauchen teils ein anderes Gewicht, wodurch du Scheiben umbauen musst.
-2. **Merken:** Soll eine Alternative, die du mehrfach wählst, irgendwann vorgeschlagen werden, den Plan dauerhaft zu ändern?
+Keine.
 
 ## Entscheidungen
 
@@ -106,3 +107,5 @@ Eine Übung lässt sich vor dem Start mit einer Wischgeste gegen eine gleichwert
 | 2026-10-12 | Der Burner-Wechsel zählt in dieselben zwei Joker, die Burner-Liste aus 005 ist sein Variantenpool | Einfach halten, eine Regel für alles |
 | 2026-10-12 | Zurückwischen ist erlaubt und kostet keinen Joker | Entspannter bei Vertippen oder Umentscheiden |
 | 2026-10-12 | Wechseln nur, solange die Übung nicht angefangen ist, also bis zum ersten „Los“ | Die Sätze einer Übung bleiben vergleichbar |
+| 2026-10-12 | Katalog der Alternativen als Startpunkt bestätigt, spätere Ergänzung ausdrücklich vorgesehen | Erst im Training erproben, dann gezielt erweitern |
+| 2026-10-12 | Kein Vorschlag zur dauerhaften Planänderung bei häufig gewählten Alternativen | Bewusst schlank bleiben. Gehört zu späteren „lernenden“ Funktionen wie 009. |
