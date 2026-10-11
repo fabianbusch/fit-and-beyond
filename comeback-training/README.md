@@ -15,7 +15,7 @@ Persönlicher Trainingsbegleiter für ein Ganzkörper-Krafttraining zu Hause. Di
 | [002](features/002-zeiten-erfassen.md) | Pausen- und Übungszeiten erfassen | Entwurf | keine | 001 |
 | [003](features/003-countdown-signal.md) | Countdown-Signale für Pausen und Haltezeiten | Entwurf | keine | 002 |
 | [004](features/004-muskelkarte.md) | Muskelkarte am Körpermodell (nur Markierung) | Entwurf | 2 | |
-| [005](features/005-burner.md) | Burner: optionale Zusatzübung | Entwurf | 3 | 001 |
+| [005](features/005-burner.md) | Burner: optionale Zusatzübung | Entwurf | 1 | 001, 002, 003, 006 |
 | [006](features/006-halteuebungen-auto-abhaken.md) | Zeitübungen automatisch abhaken | Entwurf | 2 | 001, 002, 003 |
 | [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | Entwurf | 4 | 001 |
 | [008](features/008-bewegungsmodell.md) | Bewegungsdarstellung der Übungen (menschliches Modell) | Entwurf · großes Feature | 6 | |
