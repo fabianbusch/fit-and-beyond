@@ -10,6 +10,18 @@ Fabian steigt nach längerer Sportpause wieder ins Training ein. Vorher hat er B
 
 **Vorhandenes Equipment:** eine verstellbare Kurzhantel mit Schraubverschlüssen, ein Hip-Band aus Stoff, eine Matte. Für eine Dehnung zusätzlich ein Türrahmen, für das Rudern optional ein Stuhl.
 
+## Rahmenbedingungen
+
+### Datenhaltung (entschieden 2026-10-11)
+
+Persönliche Daten wie Fortschritt, Ist-Leistungen, Zeiten und Einstellungen werden **lokal im Browser** gespeichert, bis es ein echtes Backend gibt.
+
+Das hat Folgen, die jedes Feature berücksichtigen muss:
+- Die Daten gibt es nur auf dem Gerät und in dem Browser, in dem trainiert wird. Handy und Laptop teilen nichts.
+- Beim Leeren der Browserdaten oder im privaten Modus gehen sie verloren. Die App muss dann trotzdem normal funktionieren, nur ohne Verlauf.
+- Die Daten hängen an der Adresse, unter der die App läuft. Wechselt die Adresse, etwa vom Claude-Artefakt zu einer eigenen Seite, startet der Verlauf leer, sofern es keinen Export und Import gibt.
+- Ein späteres Backend soll die vorhandenen Daten übernehmen können. Deshalb werden sie von Anfang an strukturiert und mit Datum gespeichert.
+
 ## Glossar
 
 | Begriff | Bedeutung |
