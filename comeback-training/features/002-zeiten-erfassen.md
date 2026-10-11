@@ -11,24 +11,29 @@ Der Plan nennt 60–90 Sek. Pause und ca. 35–40 Min. Gesamtdauer. Wie lange S�
 
 ## Ziel
 
-Die App misst genau, wie lange gearbeitet und wie lange pausiert wurde, und zeigt das am Ende der Einheit und im Verlauf. Dafür startet jeder Satz bewusst mit einem **„Los“**.
+Die App misst genau, wie lange gearbeitet und wie lange pausiert wurde, zeigt die laufende Gesamtzeit während des Trainings und fasst alles am Ende der Einheit und im Verlauf zusammen. Dafür startet jeder Satz bewusst mit einem **„Los“**.
 
 ## Neue Begriffe
 
-- **Los:** der Moment, in dem ein Satz beginnt, ausgelöst über den Knopf „Los“.
-- **Übungszeit:** Zeit von „Los“ bis zum Abhaken eines Satzes.
+- **Los:** der Moment, in dem ein Satz oder bei einseitigen Übungen eine Seite beginnt, ausgelöst über den Knopf „Los“.
+- **Übungszeit:** Zeit von „Los“ bis zum Abhaken. Bei einseitigen Übungen gibt es sie pro Seite und für den ganzen Satz.
+- **Wechselzeit:** bei einseitigen Übungen die Zeit vom Abhaken der linken Seite bis zum „Los“ der rechten.
 - **Pausenzeit:** Zeit vom Abhaken eines Satzes bis zum nächsten „Los“.
+- **Gesamtuhr:** die laufende Zeit seit dem ersten „Los“ der Einheit.
 
 ## Scope
 
 **Drin:**
-- Pflicht-Knopf „Los“ vor jedem Satz in Zirkel-Blöcken
+- Pflicht-Knopf „Los“ vor jedem Satz in Zirkel-Blöcken, bei einseitigen Übungen vor jeder Seite
+- Ein „Los“ zu Beginn des Aufwärmens
+- Laufende Gesamtuhr während des Trainings
 - Gesamtdauer der Einheit
-- Dauer jedes Satzes und jeder Pause
+- Dauer jedes Satzes, jeder Seite und jeder Pause
 - Zusammenfassung am Ende der Einheit
 - Speicherung im Trainingsprotokoll (001)
 
 **Nicht drin:**
+- Automatische Anpassung der Pausenvorgabe an gemessene Pausen
 - Herzfrequenz oder andere Sensordaten
 - Zeitvorgaben oder Warnungen bei zu langen Pausen (möglich als Folgefeature)
 - Zeiten für einzelne Aufwärm- und Abschlussübungen
@@ -39,55 +44,70 @@ Die App misst genau, wie lange gearbeitet und wie lange pausiert wurde, und zeig
 
 1. **Pflicht:** Jeder Satz in einem Zirkel-Block beginnt mit „Los“. Es gibt keinen automatischen Start und keinen Rückfall, falls „Los“ fehlt.
 2. **Erzwungen:** Solange für einen Satz kein „Los“ gedrückt wurde, lässt er sich nicht abhaken. Das Satzfeld zeigt dann statt „Satz 1“ den Knopf „Los“. Nach dem Tap wird daraus das Abhaken-Feld. So kann die Übungszeit nie fehlen.
-3. **Wo:** „Los“ gibt es an zwei Stellen, die dasselbe tun:
-   - groß in der Timer-Leiste, immer für den nächsten Satz in der Ablaufreihenfolge (Fachkonzept F4),
-   - am Satzfeld auf der Übungskarte, für jeden noch offenen Satz.
-4. **Nur ein laufender Satz:** Es kann immer nur ein Satz gleichzeitig laufen. Solange einer läuft, ist „Los“ an allen anderen Sätzen gesperrt.
-5. **Während eines Satzes:** Die Leiste zeigt Übung, Ort (z. B. „Block A · Runde 2 von 3 · Satz 2“) und die mitlaufende Übungszeit.
-6. **Los während der Pause:** Wird „Los“ gedrückt, solange der Pausentimer noch läuft, endet die Pause sofort. Die Pausenzeit ist dann entsprechend kürzer.
-7. **Versehentliches Los:** Ein laufender Satz lässt sich über „Abbrechen“ zurücksetzen. Er ist dann wieder offen und braucht ein neues „Los“. Die Pausenzeit läuft in diesem Fall weiter, als wäre nichts passiert.
-8. **Abhaken rückgängig:** Wird ein erledigter Satz wieder abgewählt (Fachkonzept F2), werden seine Zeiten verworfen. Er braucht ein neues „Los“.
+3. **Einseitige Übungen:** Rudern und Schulterdrücken haben pro Seite ein eigenes „Los“. Ablauf eines Satzes:
+   - „Los links“ → linke Seite ausführen → links abhaken
+   - „Los rechts“ → rechte Seite ausführen → rechts abhaken
+   - Erst danach startet die Pause. Zwischen den Seiten gibt es keinen Pausentimer (001, Regel 2).
+   - „Los rechts“ ist erst möglich, wenn links abgehakt ist. Tippt Fabian „Los rechts“, während die Anstrengungsauswahl der linken Seite noch offen ist, gilt links „passend“ (001, Regel 3).
+4. **Aufwärmen:** Das Aufwärmen hat ein einziges „Los“ am Blockanfang. Damit beginnt die Einheit. Die Aufwärmübungen lassen sich danach ohne eigenes „Los“ abhaken. Vor diesem ersten „Los“ ist nichts abhakbar.
+5. **Abschluss:** Die Dehnungen im Abschluss brauchen kein „Los“, weil die Einheit dann längst läuft.
+6. **Wo:** „Los“ gibt es an zwei Stellen, die dasselbe tun:
+   - groß in der Timer-Leiste, immer für den nächsten Schritt in der Ablaufreihenfolge (Fachkonzept F4),
+   - am Satzfeld auf der Übungskarte, für jeden noch offenen Satz beziehungsweise jede offene Seite.
+7. **Nur ein laufender Satz:** Es kann immer nur ein Satz gleichzeitig laufen. Solange einer läuft, ist „Los“ an allen anderen Sätzen gesperrt. Ein einseitiger Satz läuft von „Los links“ bis zum Abhaken rechts.
+8. **Während eines Satzes:** Die Leiste zeigt Übung, Ort (z. B. „Block B · Runde 2 von 3 · Satz 2 · rechts“) und die mitlaufende Übungszeit.
+9. **Los während der Pause:** Wird „Los“ gedrückt, solange der Pausentimer noch läuft, endet die Pause sofort. Die Pausenzeit ist dann entsprechend kürzer.
+10. **Versehentliches Los:** Ein laufender Satz oder eine laufende Seite lässt sich über „Abbrechen“ zurücksetzen und braucht dann ein neues „Los“. Die Pausenzeit läuft in diesem Fall weiter, als wäre nichts passiert.
+11. **Abhaken rückgängig:** Wird ein erledigter Satz wieder abgewählt (Fachkonzept F2), werden seine Zeiten verworfen. Er braucht ein neues „Los“.
 
 ### Zeiten
 
-9. **Start der Einheit:** Die Einheit beginnt mit dem ersten „Los“. Das gilt auch für den allerersten Satz, vor dem es noch keine Pause gab. Der Ablauf ist dadurch immer gleich. Zum Aufwärmen siehe offene Frage 1.
-10. **Ende der Einheit:** Die Einheit endet mit „Einheit abschließen“ (001).
-11. **Übungszeit:** von „Los“ bis zum Abhaken des Satzes.
-12. **Pausenzeit:** vom Abhaken eines Satzes bis zum nächsten „Los“. Die 5 Sek. Anstrengungsauswahl aus 001 zählen zur Pause.
-13. **Einseitige Übungen:** Rudern und Schulterdrücken haben ein „Los“ pro Satz, nicht pro Seite. Die Übungszeit läuft von „Los“ bis zum Abhaken der zweiten Seite und umfasst damit beide Seiten und den Wechsel. Die Pausenzeit beginnt erst mit dem Abhaken der zweiten Seite (siehe 001, Regel 2 und 11). Siehe offene Frage 2.
-14. **Überziehen:** Läuft eine Pause länger als der Timer, zählt die Überziehung zur Pausenzeit. Die Timer-Leiste zählt nach Ablauf sichtbar weiter, z. B. „+0:12“, bis „Los“ gedrückt wird.
-15. **Zusammenfassung am Ende:**
+12. **Start der Einheit:** Die Einheit beginnt mit dem ersten „Los“, also dem „Los“ des Aufwärmens. Die Gesamtdauer enthält das Aufwärmen.
+13. **Ende der Einheit:** Die Einheit endet mit „Einheit abschließen“ (001).
+14. **Übungszeit:** von „Los“ bis zum Abhaken. Bei einseitigen Übungen wird sie pro Seite gespeichert. Die Übungszeit des ganzen Satzes reicht von „Los links“ bis zum Abhaken rechts und umfasst die Wechselzeit.
+15. **Pausenzeit:** vom Abhaken eines Satzes bis zum nächsten „Los“, bei einseitigen Übungen ab dem Abhaken der rechten Seite. Die 5 Sek. Anstrengungsauswahl aus 001 zählen zur Pause.
+16. **Pausenvorgabe:** Die Pausenvorgabe bleibt fest auf dem eingestellten Wert, heute 60 Sek. Die App passt sie nicht an die gemessenen Pausen an. Die Durchschnittspause erscheint nur in der Zusammenfassung.
+17. **Überziehen:** Läuft eine Pause länger als der Timer, zählt die Überziehung zur Pausenzeit. Die Timer-Leiste zählt nach Ablauf sichtbar weiter, z. B. „+0:12“, bis „Los“ gedrückt wird.
+
+### Gesamtuhr
+
+18. **Anzeige:** Ab dem ersten „Los“ zeigt die App dezent eine laufende Gesamtuhr, z. B. „Gesamt 12:34“. Sie steht in der Timer-Leiste, kleiner und ruhiger als Pausen- und Satzzeit, damit der Blick auf der Übung bleibt.
+19. **Lauf:** Die Gesamtuhr läuft durchgehend, auch während Pausen. Sie stoppt mit „Einheit abschließen“.
+20. **Neuladen:** Nach Neuladen der Seite zeigt die Gesamtuhr die richtige Zeit ab dem ersten „Los“, nicht ab dem Neuladen.
+
+### Auswertung
+
+21. **Zusammenfassung am Ende:**
     - Gesamtdauer
     - Reine Übungszeit und reine Pausenzeit, jeweils als Summe
     - Durchschnittliche Pause
     - Längste Pause, mit Übung und Runde
-16. **Verlauf:** Die Liste vergangener Einheiten (001) zeigt zusätzlich die Gesamtdauer.
+22. **Verlauf:** Die Liste vergangener Einheiten (001) zeigt zusätzlich die Gesamtdauer.
 
 ### Bezug zu anderen Features
 
-17. **006 (Zeitübungen):** Beim Unterarmstütz übernimmt „Los“ die Rolle des heutigen Knopfs „Halten“. Wie „Los“, Vor-Countdown und automatisches Abhaken dort zusammenspielen, wird in 006 festgelegt.
-18. **Bisherige automatische Pause (Fachkonzept F5):** Die Pause startet weiterhin nach dem Abhaken, wie in 001 beschrieben. Neu ist nur, dass sie durch „Los“ beendet wird.
+23. **006 (Zeitübungen):** Beim Unterarmstütz übernimmt „Los“ die Rolle des heutigen Knopfs „Halten“. Wie „Los“, Vor-Countdown und automatisches Abhaken dort zusammenspielen, wird in 006 festgelegt.
+24. **Bisherige automatische Pause (Fachkonzept F5):** Die Pause startet weiterhin nach dem Abhaken, wie in 001 beschrieben. Neu ist nur, dass sie durch „Los“ beendet wird.
 
 ## Akzeptanzkriterien
 
-- [ ] Ein Satz, für den kein „Los“ gedrückt wurde, lässt sich nicht abhaken. Das gilt auch für den allerersten Satz der Einheit.
+- [ ] Vor dem „Los“ des Aufwärmens ist nichts abhakbar. Danach lassen sich alle Aufwärmübungen ohne weiteres „Los“ abhaken.
+- [ ] Ein Satz in Block A–C, für den kein „Los“ gedrückt wurde, lässt sich nicht abhaken.
+- [ ] Bei Rudern und Schulterdrücken braucht jede Seite ein eigenes „Los“. „Los rechts“ ist erst nach dem Abhaken links möglich. Zwischen den Seiten startet keine Pause.
+- [ ] Im Protokoll stehen bei einseitigen Übungen getrennte Übungszeiten für links und rechts.
 - [ ] Nach „Los“ zeigt die Leiste die mitlaufende Übungszeit, und der Satz lässt sich abhaken.
 - [ ] Solange ein Satz läuft, lässt sich kein anderer Satz starten.
 - [ ] „Los“ während einer laufenden Pause beendet die Pause sofort.
-- [ ] Bei Rudern und Schulterdrücken genügt ein „Los“ für beide Seiten.
 - [ ] Nach Ablauf eines Pausentimers zählt die Leiste sichtbar die Überziehung hoch, bis „Los“ gedrückt wird.
-- [ ] Nach einer kompletten Einheit stimmt die Gesamtdauer auf etwa eine Minute mit der Uhr überein, gemessen ab dem ersten „Los“.
+- [ ] Die Pausenvorgabe bleibt auch nach mehreren Einheiten mit längeren Pausen bei 60 Sek.
+- [ ] Ab dem ersten „Los“ ist eine laufende Gesamtuhr sichtbar, die auch in Pausen weiterläuft und mit „Einheit abschließen“ stoppt.
+- [ ] Nach einer kompletten Einheit stimmt die Gesamtdauer auf etwa eine Minute mit der Uhr überein, gemessen ab dem „Los“ des Aufwärmens.
 - [ ] Eine bewusst auf 2 Min. verlängerte Pause erscheint in der Zusammenfassung als längste Pause mit etwa 2:00.
-- [ ] Die Zeiten, auch ein gerade laufender Satz, überstehen ein Neuladen der Seite mitten im Training.
+- [ ] Gesamtuhr und alle Zeiten, auch ein gerade laufender Satz, überstehen ein Neuladen der Seite mitten im Training.
 
 ## Offene Fragen
 
-1. **Aufwärmen:** Das Aufwärmen hat keine Sätze, nur ein „Erledigt“ pro Übung. Braucht es auch ein „Los“?
-   - Vorschlag: ein einziges „Los“ zu Beginn des Aufwärmens. Damit beginnt die Einheit, die Aufwärmübungen lassen sich danach ohne weiteres „Los“ abhaken. Die Gesamtdauer enthält so das Aufwärmen.
-   - Alternative: Aufwärmen ohne „Los“, die Einheit beginnt erst mit dem ersten Satz von Block A. Die Gesamtdauer enthält dann kein Aufwärmen.
-2. **Einseitige Übungen:** Reicht ein „Los“ pro Satz, wie in Regel 13 angenommen? Oder soll auch die zweite Seite ein eigenes „Los“ bekommen, um die Zeit pro Seite zu messen?
-3. **Pausenvorgabe anpassen:** Soll die gemessene Durchschnittspause künftig die Standardpause vorbelegen, z. B. 75 statt 60 Sek.? Oder bleibt das bewusst manuell?
-4. **Gesamtuhr im Training:** Soll während der Einheit eine laufende Gesamtuhr sichtbar sein, oder reichen die Satzzeit in der Leiste und die Zusammenfassung am Ende?
+Keine.
 
 ## Entscheidungen
 
@@ -96,3 +116,7 @@ Die App misst genau, wie lange gearbeitet und wie lange pausiert wurde, und zeig
 | 2026-10-12 | Jeder Satz startet über einen Pflicht-Knopf „Los“, kein automatischer Start und kein Automatik-Rückfall | Genaue Übungszeit statt geschätzter. Trinken oder Gewicht umbauen nach dem Pausensignal zählt so zur Pause. |
 | 2026-10-12 | Abhaken ist gesperrt, bis für den Satz „Los“ gedrückt wurde | „Los“ kann nicht vergessen werden, die Übungszeit fehlt nie |
 | 2026-10-12 | Auch der allererste Satz braucht „Los“, die Einheit beginnt mit dem ersten „Los“ | Ablauf immer gleich, eindeutiger Startpunkt für die Gesamtdauer |
+| 2026-10-12 | Ein einziges „Los“ zu Beginn des Aufwärmens startet die Einheit, die Aufwärmübungen brauchen kein eigenes „Los“ | Die Gesamtdauer enthält das Aufwärmen, ohne das Aufwärmen mit Tipps zu überfrachten |
+| 2026-10-12 | Einseitige Übungen: ein eigenes „Los“ pro Seite, Übungszeit getrennt für links und rechts | Konsistent zur getrennten Erfassung pro Seite in 001 |
+| 2026-10-12 | Pausenvorgabe bleibt fest, keine automatische Anpassung an gemessene Pausen | Vorhersehbarkeit. Eine sich selbst verschiebende Vorgabe fühlt sich ungefragt an. |
+| 2026-10-12 | Laufende Gesamtuhr dezent sichtbar, ab dem ersten „Los“ | Gefühl fürs Tempo, ohne vom Satz abzulenken |

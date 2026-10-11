@@ -44,7 +44,7 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
    - Schritte: Band-Walks
    - Sekunden: Unterarmstütz
 2. **Einseitige Übungen:** Rudern und Schulterdrücken werden pro Seite getrennt erfasst. Jede Seite hat einen eigenen Ist-Wert und eine eigene Anstrengung. Ablauf im Training:
-   - Erst die linke Seite ausführen und abhaken, dann direkt die rechte.
+   - Erst die linke Seite ausführen und abhaken, dann direkt die rechte. Jede Seite startet mit einem eigenen „Los“ (siehe 002).
    - Zwischen den Seiten gibt es **keine Pause**.
    - Der Pausentimer startet erst, wenn beide Seiten erfasst sind.
    - Ein Satz einer einseitigen Übung gilt erst als erledigt, wenn beide Seiten erfasst sind.
@@ -61,7 +61,7 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 8. **Einheit abschließen:** Sind alle Pflichtsätze erledigt, bietet die App „Einheit abschließen“ an. Erst dann wird das Protokoll endgültig gespeichert, und der Tagesfortschritt wird zurückgesetzt.
 9. **Abgebrochene Einheit:** Ist eine Einheit nach 12 Stunden noch nicht abgeschlossen, wird sie beim nächsten Öffnen als „abgebrochen“ mit den bis dahin erfassten Sätzen gespeichert.
 10. **Letztes Mal:** Jede Übungskarte zeigt eine Zeile wie „Letztes Mal: 12 · 12 · 11 Wdh. mit 10 kg“, sobald ein Protokoll existiert. Bei einseitigen Übungen getrennt, z. B. „L 10 · 10 · 9 / R 10 · 9 · 9 mit 8 kg“.
-11. **Bezug zu 002 (Zeiten):** Bei einseitigen Übungen beginnt die Pausenzeit mit dem Abhaken der zweiten Seite. Die Zeit zwischen den Seiten zählt zur Übungszeit, nicht zur Pause.
+11. **Bezug zu 002 (Zeiten):** Bei einseitigen Übungen hat jede Seite ein eigenes „Los“ und eine eigene Übungszeit. Die Pausenzeit beginnt mit dem Abhaken der zweiten Seite. Die Zeit zwischen den Seiten ist Wechselzeit und zählt zur Übungszeit des Satzes, nicht zur Pause.
 12. **Datenhaltung:** Siehe Abschnitt „Rahmenbedingungen“ im Fachkonzept. Alles bleibt lokal im Browser.
 13. **Daten sichern (Export):** Ein Knopf „Daten sichern“ lädt eine Datei mit allen persönlichen Daten herunter: alle Trainingsprotokolle, die laufende Einheit und Einstellungen. Der Dateiname enthält das Datum, z. B. `comeback-training-2026-10-12.json`. Das Format ist geräteunabhängig und funktioniert auf Handy und Laptop.
 14. **Daten laden (Import):** Ein Knopf „Daten laden“ liest eine solche Datei wieder ein.
