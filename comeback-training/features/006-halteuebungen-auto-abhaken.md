@@ -27,7 +27,7 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Zeit abgelauf
 ## Fachliche Regeln
 
 1. **Betroffene Übungen:** alle Übungen, deren Dosierung eine Zeit ist. Im Plan derzeit nur der Unterarmstütz, künftig auch zeitbasierte Burner (005) und Alternativen (007), z. B. Seitstütz.
-2. **Start:** Der Knopf „Halten“ startet zuerst einen Vor-Countdown von 5 Sek. mit dem Text „In Position“. Danach beginnt die eigentliche Haltezeit.
+2. **Start:** Der Pflicht-Knopf „Los“ aus 002 startet zuerst den Start-Countdown 3-2-1 mit dem Text „In Position“ (003, Regel 9). Danach beginnt die eigentliche Haltezeit. Den bisherigen Knopf „Halten“ gibt es nicht mehr.
 3. **Haltedauer:** Vorbelegt mit dem Ist-Wert der letzten Einheit (001), sonst 30 Sek. (untere Plan-Grenze). Vor dem Start lässt sie sich in 5-Sek.-Schritten anpassen.
 4. **Ablauf:** Bei 0 wird der nächste offene Satz dieser Übung als erledigt markiert. Ist-Wert ist die volle Haltezeit. Danach startet die Pause wie bei manuellem Abhaken.
 5. **Vorzeitig beenden:** Wird während der Haltezeit „Stopp“ getippt, fragt die Leiste: „Gehaltene 24 Sek. werten?“ mit „Werten“ und „Verwerfen“.
@@ -45,9 +45,10 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Zeit abgelauf
 
 ## Offene Fragen
 
-1. **Vor-Countdown:** 5 Sek. passend, oder lieber 10?
-2. **Dehnungen:** Sollen die Dehnungen im Abschluss (30 Sek. pro Seite) auch mit Timer laufen und sich selbst abhaken, inklusive Seitenwechsel-Signal?
-3. **Haltedauer steigern:** Soll die App die Haltezeit von selbst erhöhen, wenn das Ziel erreicht wurde? Das gehört eigentlich zum späteren Feature „Steigerungsvorschläge“.
+1. **Vor-Countdown:** In 003 ist ein Start-Countdown von 3 Sek. (3-2-1) festgelegt. Reicht das, um nach „Los“ das Handy abzulegen und in Position zu gehen? Oder braucht es davor noch eine stille Vorlaufzeit, z. B. 5 Sek. vor dem 3-2-1?
+2. **Seitenwechsel:** Regel 6 geht von einem automatischen Wechsel aus. In 002 hat jede Seite ein eigenes „Los“. Soll das bei Zeitübungen pro Seite auch so sein?
+3. **Dehnungen:** Sollen die Dehnungen im Abschluss (30 Sek. pro Seite) auch mit Timer laufen und sich selbst abhaken, inklusive Seitenwechsel-Signal?
+4. **Haltedauer steigern:** Soll die App die Haltezeit von selbst erhöhen, wenn das Ziel erreicht wurde? Das gehört eigentlich zum späteren Feature „Steigerungsvorschläge“.
 
 ## Entscheidungen
 
