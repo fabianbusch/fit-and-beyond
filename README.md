@@ -17,6 +17,10 @@ Die Apps laufen über GitHub Pages: **https://fabianbusch.github.io/fit-and-beyo
 - Jede App ist eine eigenständige HTML-Datei mit vollständigem Grundgerüst (`<!doctype html>`, Viewport-Angabe).
 - **Achtung:** Eine Pages-Seite ist öffentlich erreichbar, auch wenn das Repo privat ist. Persönliche Daten landen deshalb nie im Repo, sondern nur im Browser (siehe Datenhaltung im jeweiligen Fachkonzept).
 
+## Architektur und Datenschutz
+
+Heute läuft alles lokal im Browser, ohne Server. Für die Zukunft gilt: kein zentraler Datenspeicher, Austausch von Gerät zu Gerät, Ende-zu-Ende-verschlüsselt, Zero Trust. Details und offene Fragen stehen in [`docs/architektur.md`](docs/architektur.md).
+
 ## Arbeitsweise: erst fachlich, dann technisch
 
 In diesem Repo wird nichts implementiert, bevor es fachlich beschrieben und abgestimmt ist.
@@ -34,6 +38,7 @@ Details stehen in [`docs/prozess.md`](docs/prozess.md).
 docs/                    Repo-weite Regeln
   prozess.md             Ablauf von der Idee bis zur Umsetzung
   feature-vorlage.md     Vorlage für Feature-Spezifikationen
+  architektur.md         Ist-Stand und Zielbild der Architektur, Datenschutz-Leitlinien
 <projekt>/
   fachkonzept.md         Fachlicher Ist-Stand inkl. Glossar
   features/              Eine Spezifikation pro Feature
