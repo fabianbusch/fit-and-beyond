@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>fit-and-beyond</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #F1F3F5; --surface: #FFFFFF; --fg: #15191E; --muted: #5A6470; --line: #DBE0E6; --accent: #2C5E86;
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #111418; --surface: #1A1F25; --fg: #E7EBEF; --muted: #98A2AD; --line: #2B323A; --accent: #80B1D9; color-scheme: dark; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+  padding-inline: 16px; padding-block: calc(32px + env(safe-area-inset-top, 0px)) 32px; }
+main { max-width: 640px; margin: 0 auto; display: grid; gap: 20px; }
+h1 { font-family: var(--font-display); font-size: clamp(40px, 11vw, 56px); line-height: .95; margin: 0; }
+p { margin: 0; color: var(--muted); }
+a.app { display: grid; gap: 4px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; color: inherit; text-decoration: none; }
+a.app:hover, a.app:focus-visible { border-color: var(--accent); outline: none; }
+a.app strong { font-family: var(--font-display); font-size: 24px; color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>fit-and-beyond</h1>
+  <p>Training, Fitness und Wohlbefinden.</p>
+  <a class="app" href="comeback-training/">
+    <strong>Comeback-Training</strong>
+    <span>Ganzkörper-Kraft zu Hause mit Kurzhantel, Hip-Band und Matte</span>
+  </a>
+</main>
+</body>
+</html>

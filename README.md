@@ -8,6 +8,15 @@ Fabians Sammlung rund um Training, Fitness und Wohlbefinden. Jedes Projekt liegt
 |---|---|---|
 | [`comeback-training/`](comeback-training/) | Trainingsbegleiter für das Ganzkörper-Krafttraining zu Hause mit Kurzhantel, Hip-Band und Matte | v0.4 |
 
+## Auslieferung
+
+Die Apps laufen über GitHub Pages: **https://fabianbusch.github.io/fit-and-beyond/**
+
+- Jeder Push auf `main` veröffentlicht automatisch, siehe [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+- Ausgeliefert werden nur Dateien für den Browser. Markdown, `docs/` und `.github/` bleiben draußen.
+- Jede App ist eine eigenständige HTML-Datei mit vollständigem Grundgerüst (`<!doctype html>`, Viewport-Angabe).
+- **Achtung:** Eine Pages-Seite ist öffentlich erreichbar, auch wenn das Repo privat ist. Persönliche Daten landen deshalb nie im Repo, sondern nur im Browser (siehe Datenhaltung im jeweiligen Fachkonzept).
+
 ## Arbeitsweise: erst fachlich, dann technisch
 
 In diesem Repo wird nichts implementiert, bevor es fachlich beschrieben und abgestimmt ist.
