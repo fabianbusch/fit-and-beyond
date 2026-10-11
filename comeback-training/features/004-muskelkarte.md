@@ -1,8 +1,9 @@
 # 004 – Muskelkarte am Körpermodell
 
 **Status:** Entwurf
-**Erstellt:** 2026-10-11
+**Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Körper/Dummy SVG Darstellung welche Muskeln wie bewegt werden“
+**Siehe auch:** [008 – Bewegungsdarstellung der Übungen](008-bewegungsmodell.md), dort liegt der Teil „wie bewegt werden“
 
 ## Problem
 
@@ -22,7 +23,7 @@ Jede Übung zeigt an einer schematischen Körperfigur, welche Muskeln arbeiten. 
 
 **Nicht drin:**
 - Anatomisch exakte Darstellung einzelner Muskelköpfe
-- Animation des Bewegungsablaufs. Siehe offene Frage 1, eigenes Feature.
+- Darstellung der Bewegung in jeder Form, auch als Animation. Das ist bewusst ausgelagert in [008](008-bewegungsmodell.md).
 - 3D-Modell
 
 ## Fachliche Regeln
@@ -54,12 +55,11 @@ Jede Übung zeigt an einer schematischen Körperfigur, welche Muskeln arbeiten. 
 
 ## Offene Fragen
 
-1. **„Wie bewegt werden“:** Meinst du nur, welche Muskeln arbeiten (diese Spezifikation), oder auch eine kleine Animation der Bewegung, z. B. eine Strichfigur, die den Goblet Squat vormacht? Das wäre deutlich aufwendiger und ein eigenes Feature.
-2. **Gesamtkarte am Ende:** gewünscht?
-3. **Figur:** eher neutral-abstrakt, oder mit klar männlicher Silhouette?
+1. **Gesamtkarte am Ende:** gewünscht?
+2. **Figur:** eher neutral-abstrakt, oder mit klar männlicher Silhouette? Gegebenenfalls passend zum Modell aus 008.
 
 ## Entscheidungen
 
 | Datum | Entscheidung | Begründung |
 |---|---|---|
-| | | |
+| 2026-10-12 | Muskelkarte nur als farbige Markierung (welche Muskeln arbeiten, Haupt- und Hilfsmuskeln), keine Bewegungsdarstellung. Der Wunsch nach Bewegung geht in das eigene Feature 008. | Die Markierung ist klein und schnell umsetzbar. Ein menschlich wirkendes Bewegungsmodell ist mit Abstand das aufwendigste Feature und wird getrennt in Ruhe geklärt. |

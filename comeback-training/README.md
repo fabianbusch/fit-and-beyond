@@ -9,14 +9,17 @@ Persönlicher Trainingsbegleiter für ein Ganzkörper-Krafttraining zu Hause. Di
 
 ## Features
 
-| Nr. | Titel | Status | Hängt ab von |
-|---|---|---|---|
-| [001](features/001-ist-leistung-erfassen.md) | Ist-Leistung erfassen und Trainingsprotokoll | Entwurf | |
-| [002](features/002-zeiten-erfassen.md) | Pausen- und Übungszeiten erfassen | Entwurf | 001 |
-| [003](features/003-countdown-signal.md) | Countdown-Signal am Ende von Pausen und Haltezeiten | Entwurf | |
-| [004](features/004-muskelkarte.md) | Muskelkarte am Körpermodell | Entwurf | |
-| [005](features/005-burner.md) | Burner: optionale Zusatzübung | Entwurf | 001 |
-| [006](features/006-halteuebungen-auto-abhaken.md) | Zeitübungen automatisch abhaken | Entwurf | 003 |
-| [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | Entwurf | 001 |
+| Nr. | Titel | Status | Offene Fragen | Hängt ab von |
+|---|---|---|---|---|
+| [001](features/001-ist-leistung-erfassen.md) | Ist-Leistung erfassen und Trainingsprotokoll | Entwurf | keine | |
+| [002](features/002-zeiten-erfassen.md) | Pausen- und Übungszeiten erfassen | Entwurf | keine | 001 |
+| [003](features/003-countdown-signal.md) | Countdown-Signale für Pausen und Haltezeiten | Entwurf | keine | 002 |
+| [004](features/004-muskelkarte.md) | Muskelkarte am Körpermodell (nur Markierung) | Entwurf | 2 | |
+| [005](features/005-burner.md) | Burner: optionale Zusatzübung | Entwurf | 3 | 001 |
+| [006](features/006-halteuebungen-auto-abhaken.md) | Zeitübungen automatisch abhaken | Entwurf | 2 | 001, 002, 003 |
+| [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | Entwurf | 4 | 001 |
+| [008](features/008-bewegungsmodell.md) | Bewegungsdarstellung der Übungen (menschliches Modell) | Entwurf · großes Feature | 6 | 004 |
 
-**Vorgeschlagene Reihenfolge:** 003 → 006 (klein, sofort im Training spürbar) → 001 (Fundament für alles mit Verlauf) → 002 → 007 → 005 → 004.
+**Fachlich ohne offene Fragen:** 001, 002, 003. Sie warten auf Fabians Freigabe.
+
+**Vorgeschlagene Reihenfolge der Umsetzung:** 001 → 002 → 003 → 006 (Fundament: Erfassen, Los-Knopf, Signale, Zeitübungen) → 007 → 005 → 004 → 008.
