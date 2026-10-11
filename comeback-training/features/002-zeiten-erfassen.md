@@ -50,7 +50,7 @@ Die App misst genau, wie lange gearbeitet und wie lange pausiert wurde, zeigt di
    - Erst danach startet die Pause. Zwischen den Seiten gibt es keinen Pausentimer (001, Regel 2).
    - „Los rechts“ ist erst möglich, wenn links abgehakt ist. Tippt Fabian „Los rechts“, während die Anstrengungsauswahl der linken Seite noch offen ist, gilt links „passend“ (001, Regel 3).
 4. **Aufwärmen:** Das Aufwärmen hat ein einziges „Los“ am Blockanfang. Damit beginnt die Einheit. Die Aufwärmübungen lassen sich danach ohne eigenes „Los“ abhaken. Vor diesem ersten „Los“ ist nichts abhakbar.
-5. **Abschluss:** Die Dehnungen im Abschluss brauchen kein „Los“, weil die Einheit dann längst läuft.
+5. **Abschluss:** Abschlussübungen ohne Zeitangabe brauchen kein „Los“, weil die Einheit dann längst läuft. Dehnungen mit Zeitangabe starten mit „Los“, weil dort der Timer läuft (006, Regel 12–17). Ihre Zeiten werden nicht einzeln erfasst.
 6. **Wo:** „Los“ gibt es an zwei Stellen, die dasselbe tun:
    - groß in der Timer-Leiste, immer für den nächsten Schritt in der Ablaufreihenfolge (Fachkonzept F4),
    - am Satzfeld auf der Übungskarte, für jeden noch offenen Satz beziehungsweise jede offene Seite.

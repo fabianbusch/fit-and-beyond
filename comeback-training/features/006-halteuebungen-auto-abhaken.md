@@ -3,7 +3,7 @@
 **Status:** Entwurf
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Übungszeit durch Übung automatisch Satzcheck (Planke …)“
-**Hängt zusammen mit:** 001 (Ist-Wert, Anstrengung), 002 (Los-Knopf), 003 (Töne, Start-Countdown)
+**Hängt zusammen mit:** 001 (Ist-Wert, Anstrengung), 002 (Los-Knopf), 003 (Töne, Start-Countdown), 009 (Steigerung)
 
 ## Problem
 
@@ -20,10 +20,11 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Haltezeit abg
 - Automatisches Abhaken bei Ablauf der Haltezeit
 - Zeitübungen pro Seite mit eigenem „Los“ je Seite
 - Vorzeitiges Beenden mit Übernahme der gehaltenen Zeit
+- Dehnungen im Abschluss mit Timer, Seitenwechsel-Signal und automatischem Abhaken
 
 **Nicht drin:**
 - Automatisches Abhaken bei Wiederholungsübungen. Das kann die App nicht wissen.
-- Dehnungen im Abschluss. Siehe offene Frage 1.
+- Automatisches Steigern der Haltezeit. Das gehört in das eigene Feature [009 – Steigerung](009-steigerung.md).
 
 ## Fachliche Regeln
 
@@ -51,9 +52,21 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Haltezeit abg
 10. **Zwischen den Seiten:** Nach der linken Seite erscheint die Anstrengungsauswahl, aber kein Pausentimer. Die Leiste bietet direkt „Los rechts“ an. Die Pause startet erst nach der rechten Seite (001, Regel 2; 002, Regel 3).
 11. **Erfassung:** Ist-Wert, Anstrengung und Übungszeit werden pro Seite gespeichert (001, 002).
 
+### Dehnungen im Abschluss
+
+12. **Timer auch für Dehnungen:** Jede Dehnung im Abschluss, deren Dosierung eine Zeit ist, läuft mit Timer und hakt sich selbst ab. Heute sind das Hüftbeuger-Dehnung (30 Sek. pro Seite), Kindhaltung (60 Sek., Obergrenze der Spanne 45–60) und Brustdehnung im Türrahmen (30 Sek. pro Seite).
+13. **Start:** Eine Dehnung startet mit „Los“, danach das 3-2-1 mit „In Position“, dann die Haltezeit, wie bei allen Zeitübungen (Regel 3). Damit gilt die Ausnahme „Abschluss ohne Los“ aus 002 nur noch für den Fall, dass eine Abschlussübung keine Zeitangabe hat.
+14. **Seitenwechsel bei Dehnungen:** Bei Dehnungen pro Seite läuft der Seitenwechsel automatisch, ohne zweites „Los“:
+    - Ende links mit 3-2-1 und Endsignal, Text „Seite wechseln“
+    - 5 Sek. Wechselzeit, deren letzte 3 Sekunden mit 3-2-1 laufen
+    - rechte Seite mit voller Haltezeit, Ende mit 3-2-1, Endsignal und „Geschafft“
+15. **Bewusster Unterschied zu Regel 9:** Kraft-Zeitübungen pro Seite haben je Seite ein eigenes „Los“, weil dort Ist-Werte und Zeiten pro Seite erfasst werden. Dehnungen dienen der Entspannung, haben keine Erfassung (001) und laufen deshalb ohne zweiten Tap durch.
+16. **Danach:** Nach einer Dehnung gibt es keine Anstrengungsauswahl, keinen Ist-Wert und keine Pause. Die Leiste bietet direkt „Los“ für die nächste Dehnung an.
+17. **Stopp:** „Stopp“ während einer Dehnung beendet sie, die Dehnung bleibt offen. Sie lässt sich wie bisher auch von Hand abhaken.
+
 ### Zeiten
 
-12. **Übungszeit:** Die Übungszeit nach 002 beginnt mit „Los“ und schließt das 3-2-1 ein (003, Regel 11). Sie endet mit dem automatischen oder manuellen Abhaken.
+18. **Übungszeit:** Die Übungszeit nach 002 beginnt mit „Los“ und schließt das 3-2-1 ein (003, Regel 11). Sie endet mit dem automatischen oder manuellen Abhaken.
 
 ## Akzeptanzkriterien
 
@@ -64,11 +77,12 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Haltezeit abg
 - [ ] Ein Stopp während des 3-2-1 bricht ab, ohne etwas zu werten.
 - [ ] Bei einer Zeitübung pro Seite braucht jede Seite ein eigenes „Los“ mit eigenem 3-2-1. Zwischen den Seiten startet keine Pause, nach der rechten Seite schon.
 - [ ] Im Protokoll stehen bei Zeitübungen pro Seite getrennte Haltezeiten für links und rechts.
+- [ ] Jede Dehnung im Abschluss startet mit „Los“ und 3-2-1, läuft mit Timer und hakt sich am Ende selbst ab.
+- [ ] Bei Dehnungen pro Seite kommt nach der ersten Seite ein hörbares Seitenwechsel-Signal, die zweite Seite startet nach 5 Sek. Wechselzeit von selbst.
 
 ## Offene Fragen
 
-1. **Dehnungen:** Sollen die Dehnungen im Abschluss (30 Sek. pro Seite) auch mit Timer laufen und sich selbst abhaken? Nach 002 brauchen sie bisher kein „Los“.
-2. **Haltedauer steigern:** Soll die App die Haltezeit von selbst erhöhen, wenn das Ziel erreicht wurde? Das gehört eigentlich zum späteren Feature „Steigerungsvorschläge“.
+Keine.
 
 ## Entscheidungen
 
@@ -76,3 +90,5 @@ Bei Übungen auf Zeit erledigt die App den Satz selbst, sobald die Haltezeit abg
 |---|---|---|
 | 2026-10-12 | Start über „Los“ mit unmittelbar folgendem 3-2-1, kein stiller Vorlauf, kein eigener Knopf „Halten“ | 3 Sekunden reichen, um in Position zu gehen. Einheitlich mit dem Pflicht-„Los“ aus 002 und den Tönen aus 003. |
 | 2026-10-12 | Zeitübungen pro Seite: jede Seite mit eigenem „Los“, eigenem 3-2-1 und eigener Haltezeit | Konsistent zu „Los“ pro Seite in 002 und getrennter Erfassung in 001 |
+| 2026-10-12 | Dehnungen im Abschluss laufen mit Timer und haken sich selbst ab, bei Dehnungen pro Seite mit automatischem Seitenwechsel-Signal | Wunsch Fabian: Wo „30 Sekunden halten“ steht, soll auch ein Timer laufen |
+| 2026-10-12 | Automatisches Steigern der Haltezeit nicht in 006, sondern im eigenen Feature 009 | Steigerung betrifft Wiederholungen, Gewicht und Haltezeit gleichermaßen und soll an einer Stelle geregelt werden |
