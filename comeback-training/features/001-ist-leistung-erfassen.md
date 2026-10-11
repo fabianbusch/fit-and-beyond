@@ -66,8 +66,11 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 13. **Daten sichern (Export):** Ein Knopf „Daten sichern“ lädt eine Datei mit allen persönlichen Daten herunter: alle Trainingsprotokolle, die laufende Einheit und Einstellungen. Der Dateiname enthält das Datum, z. B. `comeback-training-2026-10-12.json`. Das Format ist geräteunabhängig und funktioniert auf Handy und Laptop.
 14. **Daten laden (Import):** Ein Knopf „Daten laden“ liest eine solche Datei wieder ein.
     - Vor dem Übernehmen zeigt die App, was in der Datei steckt, z. B. „8 Einheiten vom 11.10. bis 02.11.“, und fragt nach Bestätigung.
+    - Die Bestätigung weist deutlich darauf hin, dass die Daten auf diesem Gerät **ersetzt** werden, mit Anzahl der vorhandenen Einheiten, z. B. „Ersetzt deine 3 Einheiten auf diesem Gerät“.
+    - Nach Bestätigung **ersetzt** der Inhalt der Datei den gesamten lokalen Datenbestand: Protokolle, laufende Einheit und Einstellungen. Es wird nichts zusammengeführt.
+    - Ohne Bestätigung ändert sich nichts.
     - Ist die Datei keine gültige Sicherung, meldet die App das verständlich und ändert nichts.
-    - Ob die geladenen Daten die vorhandenen ersetzen oder mit ihnen zusammengeführt werden: siehe offene Frage 1.
+    - **Möglicher späterer Ausbau:** „Zusammenführen“ für den Mehr-Geräte-Fall, also Einheiten aus der Datei ergänzen und Dubletten erkennen. Bewusst zurückgestellt.
 15. **Ort der Knöpfe:** „Daten sichern“ und „Daten laden“ stehen bei der Verlaufsliste, nicht im Trainingsablauf.
 16. **Hinweis Auslieferung:** Export funktioniert in der über GitHub Pages ausgelieferten App. Im Claude-Artefakt sind Downloads technisch gesperrt, dort ist nur der Import nutzbar.
 
@@ -86,13 +89,12 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 - [ ] „Daten sichern“ lädt auf Handy und Laptop eine Datei mit Datum im Namen herunter.
 - [ ] Nach Leeren der Browserdaten stellt „Daten laden“ mit dieser Datei Verlauf und „Letztes Mal“ vollständig wieder her.
 - [ ] Eine beliebige andere Datei wird mit verständlicher Meldung abgelehnt, die vorhandenen Daten bleiben unverändert.
+- [ ] Vor dem Laden einer Sicherung warnt die App, dass die vorhandenen Daten ersetzt werden. Nach Bestätigung entspricht der Datenbestand genau der Datei.
+- [ ] Bricht Fabian die Bestätigung ab, bleiben die vorhandenen Daten unverändert.
 
 ## Offene Fragen
 
-1. **Ersetzen oder zusammenführen beim Laden?**
-   - **Ersetzen:** Die Datei ersetzt alle lokalen Daten. Einfach und eindeutig, aber Einheiten, die nur auf dem Gerät liegen, gehen verloren.
-   - **Zusammenführen:** Einheiten aus der Datei kommen dazu, doppelte werden erkannt und nur einmal behalten. Sicherer, wenn man zwischen Handy und Laptop wechselt.
-   - Vorschlag: zusammenführen.
+Keine.
 
 ## Entscheidungen
 
@@ -105,3 +107,4 @@ Nach jedem Satz lässt sich mit wenigen Taps festhalten, was tatsächlich geleis
 | 2026-10-12 | Einseitige Übungen pro Seite getrennt erfassen, ohne Pause zwischen den Seiten, Pause erst nach beiden Seiten | Gerade beim Wiedereinstieg sind die Seiten unterschiedlich stark, beide Werte sollen sichtbar sein. Ersetzt die frühere Annahme eines gemeinsamen Werts. |
 | 2026-10-12 | Wartezeit auf die Anstrengung: 5 Sek., danach gilt „passend“ | Lang genug zum Tippen, kurz genug, dass es nicht bremst |
 | 2026-10-12 | Export und Import der persönlichen Daten als Datei („Daten sichern“, „Daten laden“) | Schutz vor Datenverlust bei lokaler Datenhaltung. Ein Export ohne Import bringt wenig. |
+| 2026-10-12 | Import ersetzt den lokalen Datenbestand nach Vorschau und Bestätigung, kein Zusammenführen | Fokus zunächst auf ein einziges Gerät, das hält die Umsetzung schlank. Zusammenführen für den Mehr-Geräte-Fall kann später nachgerüstet werden. |
