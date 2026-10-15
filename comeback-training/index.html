@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Comeback-Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
@@ -37,7 +37,9 @@
   }
 }
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+/* Kein Zoom (011): nur Scrollen erlaubt, kein Doppeltipp- oder Zwei-Finger-Zoom */
+html, body { touch-action: pan-x pan-y; -webkit-text-size-adjust: 100%; }
+button, input, .ex, .chip, .step button { touch-action: manipulation; }
 body {
   margin: 0; background: var(--bg); color: var(--fg);
   font-family: var(--font-body); font-size: 16px; line-height: 1.5;
@@ -239,7 +241,7 @@ ol.steps { margin: 0; padding-left: 22px; display: grid; gap: 4px; }
 
   <section class="panel" id="finish"></section>
   <section class="panel" id="history"></section>
-  <p class="note" style="text-align:center">Version 0.6 · Daten bleiben nur in diesem Browser.</p>
+  <p class="note" style="text-align:center">Version 0.7 · Daten bleiben nur in diesem Browser.</p>
 </div>
 
 <div class="dock" id="dock" role="region" aria-label="Steuerung"><div class="dock-in" id="dockIn"></div></div>
@@ -1135,6 +1137,9 @@ document.addEventListener("click", (e) => {
     case "import-cancel": ui.importPreview = null; return renderHistory();
   }
 });
+/* Kein Zoom (011): iOS Safari ignoriert user-scalable=no */
+["gesturestart", "gesturechange", "gestureend"].forEach(t => document.addEventListener(t, (e) => e.preventDefault(), { passive: false }));
+document.addEventListener("touchmove", (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 document.addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.id === "entryReps") saveEntry(); });
 
 /* ---------- Wischen (007) ---------- */
