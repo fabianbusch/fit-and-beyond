@@ -76,6 +76,8 @@ section.block { display: grid; gap: 12px; }
 
 .ex { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; transition: border-color .2s, transform .18s, opacity .18s; }
 .ex.is-done { border-color: var(--done); }
+.ex, section.block, .offer, #finish { scroll-margin-top: calc(12px + env(safe-area-inset-top, 0px)); }
+.current { outline: 3px solid var(--accent); outline-offset: 2px; }
 .ex.swipe { touch-action: pan-y; }
 .ex.out-left { transform: translateX(-110%); opacity: 0; }
 .ex.out-right { transform: translateX(110%); opacity: 0; }
@@ -237,7 +239,7 @@ ol.steps { margin: 0; padding-left: 22px; display: grid; gap: 4px; }
 
   <section class="panel" id="finish"></section>
   <section class="panel" id="history"></section>
-  <p class="note" style="text-align:center">Version 0.5 · Daten bleiben nur in diesem Browser.</p>
+  <p class="note" style="text-align:center">Version 0.6 · Daten bleiben nur in diesem Browser.</p>
 </div>
 
 <div class="dock" id="dock" role="region" aria-label="Steuerung"><div class="dock-in" id="dockIn"></div></div>
@@ -857,7 +859,7 @@ function renderPlan() {
   for (const b of BLOCKS) {
     if (b.kind === "warm") {
       const head = s.warmLos ? `<span class="round done">gestartet</span>` : `<button type="button" class="btn primary" data-act="los" data-key="warm" ${canLos() ? "" : "disabled"}>Los</button>`;
-      html += `<section class="block"><div class="block-head"><div class="block-row"><h2>${b.title}</h2>${head}</div><p>${b.note}</p></div>${b.items.map(i => simpleCard(i, "warm")).join("")}</section>`;
+      html += `<section class="block" id="blk-warm"><div class="block-head"><div class="block-row"><h2>${b.title}</h2>${head}</div><p>${b.note}</p></div>${b.items.map(i => simpleCard(i, "warm")).join("")}</section>`;
     } else if (b.kind === "circuit") {
       html += `<section class="block" id="blk-${b.id}"><div class="block-head"><div class="block-row"><h2>${b.title}</h2>${roundBadge(b)}</div><p>3 Runden · pro Runde 1 Satz je Übung · ${REST} Sek. Pause nach jedem Satz</p></div>${b.slots.map(slotCard).join("")}</section>`;
     } else if (b.kind === "burner") {
@@ -873,6 +875,8 @@ function renderPlan() {
   }
   $("#plan").innerHTML = html;
   bindSwipes();
+  const cur = document.getElementById(currentTarget());
+  if (cur && sess().start) cur.classList.add("current");
 }
 function renderHeader() {
   const n = doneCount(), s = sess();
@@ -1024,9 +1028,37 @@ function updateLive() {
   if (out && a && a.kind === "reps") { const u = unitRec(a.key); out.textContent = `${u.value} ${unitWord(EX[u.variant])}`; }
 }
 
+/* ---------- Fokus auf die aktuelle Übung (010) ---------- */
+let focusId = null;
+function currentTarget() {
+  const s = sess(), a = s.active;
+  const ofKey = (k) => k.startsWith("cool|") ? "ex-" + k.slice(5) : "ex-" + parseKey(k).slot;
+  if (a) return ofKey(a.key);
+  if (s.entry) return ofKey(s.entry.key);
+  if (s.effort) return ofKey(s.effort.key);
+  const ns = nextStep();
+  if (!ns) return "finish";
+  if (ns.t === "warmLos") return "blk-warm";
+  if (ns.t === "warm" || ns.t === "cool") return "ex-" + ns.ex;
+  if (ns.t === "burnerOffer") return "blk-burner";
+  return "ex-" + ns.slot.id;
+}
+function applyFocus(scroll) {
+  const id = currentTarget();
+  document.querySelectorAll(".current").forEach(x => x.classList.remove("current"));
+  const el = document.getElementById(id);
+  if (el && sess().start) el.classList.add("current");
+  const changed = id !== focusId; focusId = id;
+  if (!el || !scroll || !changed || !sess().start || S.summary || ui.edit) return;
+  const top = el.getBoundingClientRect().top;
+  if (top >= 0 && top < window.innerHeight / 3) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+}
+
 /* ---------- Takt ---------- */
 function commit() { save(); renderAll(); }
-function renderAll() { renderHeader(); renderSummary(); renderPlan(); renderFinish(); renderHistory(); renderDock(true); }
+function renderAll(scroll = true) { renderHeader(); renderSummary(); renderPlan(); renderFinish(); renderHistory(); renderDock(true); applyFocus(scroll); }
 function tick() {
   const s = sess(), t = now(); let changed = false;
   let guard = 0;
@@ -1083,7 +1115,7 @@ document.addEventListener("click", (e) => {
     case "effort": resolveEffort(b.dataset.v); return commit();
     case "entry-save": return saveEntry();
     case "rest-add": if (s.rest) { s.rest.end += 15000; s.rest.dur += 15; s.rest.beeped = {}; } save(); return renderDock(true);
-    case "burner-start": s.burner = "start"; s.burnerOrder = burnerOrder(); commit(); { const el = $("#ex-burner"); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); } return;
+    case "burner-start": s.burner = "start"; s.burnerOrder = burnerOrder(); return commit();
     case "burner-skip": s.burner = "skip"; return commit();
     case "swap": return animateSwap(b.dataset.slot, d);
     case "weight": { const v = b.dataset.v, ex = EX[v], w = weightOf(v); s.weights[v] = w == null ? ex.startKg : Math.max(0, Math.round((w + d * 0.5) * 2) / 2); return commit(); }
@@ -1168,7 +1200,9 @@ function applyImport() {
   commit();
 }
 
-renderAll();
+try { history.scrollRestoration = "manual"; } catch (e) {}
+renderAll(false);
+window.addEventListener("load", () => requestAnimationFrame(() => { focusId = null; applyFocus(true); }));
 </script>
 </body>
 </html>

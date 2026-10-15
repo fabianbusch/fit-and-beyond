@@ -18,9 +18,10 @@ Persönlicher Trainingsbegleiter für ein Ganzkörper-Krafttraining zu Hause. Di
 | [005](features/005-burner.md) | Burner: optionale Zusatzübung | In Umsetzung | keine | 001, 002, 003, 006, 007 |
 | [006](features/006-halteuebungen-auto-abhaken.md) | Zeitübungen automatisch abhaken | In Umsetzung | keine | 001, 002, 003 |
 | [007](features/007-alternativen-per-swipe.md) | Alternative Übung per Swipe | In Umsetzung | keine | 001, 002 |
+| [010](features/010-fokus-aktuelle-uebung.md) | Fokus auf die aktuelle Übung | In Umsetzung | keine | 002 |
 | [008](features/008-bewegungsmodell.md) | Bewegungsdarstellung der Übungen (menschliches Modell) | Entwurf · großes Feature | 6 | |
 | [009](features/009-steigerung.md) | Automatische Steigerungsvorschläge (Progression) | Entwurf · großes Feature | 7 | 001 |
 
-**In Umsetzung:** 001 bis 007, freigegeben am 2026-10-15, gebaut in Version 0.5. Nach Fabians Prüfung im Training gehen sie auf `Umgesetzt`, und das Fachkonzept wird nachgezogen.
+**In Umsetzung:** 001 bis 007 (gebaut in Version 0.5) und 010 (gebaut in Version 0.6), freigegeben am 2026-10-15. Nach Fabians Prüfung im Training gehen sie auf `Umgesetzt`, und das Fachkonzept wird nachgezogen.
 
 **Vorgeschlagene Reihenfolge der Umsetzung:** 001 → 002 → 003 → 006 (Fundament: Erfassen, Los-Knopf, Signale, Zeitübungen) → 007 → 005 → 004. Danach die großen Features 009 (braucht echte Daten aus 001) und 008.
