@@ -1,6 +1,6 @@
 # 006 – Zeitübungen automatisch abhaken
 
-**Status:** Abgestimmt (Freigabe Fabian, 2026-10-15)
+**Status:** In Umsetzung · gebaut in v0.5, Prüfung durch Fabian offen (Freigabe 2026-10-15)
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Übungszeit durch Übung automatisch Satzcheck (Planke …)“
 **Hängt zusammen mit:** 001 (Ist-Wert, Anstrengung), 002 (Los-Knopf), 003 (Töne, Start-Countdown), 009 (Steigerung)

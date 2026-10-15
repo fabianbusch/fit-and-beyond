@@ -1,6 +1,6 @@
 # 004 – Muskelkarte am Körpermodell
 
-**Status:** Abgestimmt (Freigabe Fabian, 2026-10-15)
+**Status:** In Umsetzung · gebaut in v0.5, Prüfung durch Fabian offen (Freigabe 2026-10-15)
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Körper/Dummy SVG Darstellung welche Muskeln wie bewegt werden“
 **Siehe auch:** [008 – Bewegungsdarstellung der Übungen](008-bewegungsmodell.md), dort liegt der Teil „wie bewegt werden“

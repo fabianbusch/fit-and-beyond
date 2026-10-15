@@ -1,6 +1,6 @@
 # 002 – Pausen- und Übungszeiten erfassen
 
-**Status:** Abgestimmt (Freigabe Fabian, 2026-10-15)
+**Status:** In Umsetzung · gebaut in v0.5, Prüfung durch Fabian offen (Freigabe 2026-10-15)
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Pausenzeit & Übungszeit loggen“
 **Hängt ab von:** 001 (Trainingsprotokoll)
