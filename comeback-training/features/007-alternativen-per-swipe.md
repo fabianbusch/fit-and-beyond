@@ -1,6 +1,6 @@
 # 007 – Alternative Übung per Swipe
 
-**Status:** Entwurf
+**Status:** Abgestimmt (Freigabe Fabian, 2026-10-15)
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Slide for Alternative → Alternative Übung nach Tinder-Art, max. 2 mal“
 **Hängt zusammen mit:** 001 (Protokoll, Letztes Mal), 002 (Los), 005 (Burner)

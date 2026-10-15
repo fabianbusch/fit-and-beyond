@@ -1,6 +1,6 @@
 # 001 – Ist-Leistung erfassen
 
-**Status:** Entwurf
+**Status:** Abgestimmt (Freigabe Fabian, 2026-10-15)
 **Erstellt:** 2026-10-11 · **Überarbeitet:** 2026-10-12
 **Bezug:** Handzettel „Option Notiz, wie viel ich wirklich gemacht habe (Score) → für Planung next Training“
 
